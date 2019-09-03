@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "582396992806",
+    "firebase_url": "https://miu-blood-donors.firebaseio.com",
+    "project_id": "miu-blood-donors",
+    "storage_bucket": "miu-blood-donors.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582396992806:android:0f6503aa0b12dc37",
+        "android_client_info": {
+          "package_name": "com.saeefmd.official.miublooddonors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582396992806-pl1pfo2hpuscghmobtt5gdsrrde76jvp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saeefmd.official.miublooddonors",
+            "certificate_hash": "03af59726a7147107cbfeaa26954d4be1a4917a2"
+          }
+        },
+        {
+          "client_id": "582396992806-71gtua8c0945tmvqgp5jnjt2035ukhqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmA7iOT7QAuz3ELVwnT0nVDePK-SGMUzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582396992806-71gtua8c0945tmvqgp5jnjt2035ukhqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
