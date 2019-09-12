@@ -63,4 +63,8 @@
         <item>Jatrabari</item>
     </string-array>
 
+    <!-- Profile Activity -->
+    <string name="select_blood_group">Select Blood Group</string>
+    <string name="search_button">Search</string>
+
 </resources>
