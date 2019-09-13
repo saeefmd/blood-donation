@@ -69,4 +69,12 @@ public class UserInfo {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
 }
