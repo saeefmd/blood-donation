@@ -1,13 +1,18 @@
 package com.saeefmd.official.miublooddonors.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.saeefmd.official.miublooddonors.Model.BloodGroup;
+import com.saeefmd.official.miublooddonors.Adapter.DonorListAdapter;
+import com.saeefmd.official.miublooddonors.Data.Variables;
+import com.saeefmd.official.miublooddonors.Model.DonorModel;
 import com.saeefmd.official.miublooddonors.Model.DonorList;
 import com.saeefmd.official.miublooddonors.R;
 
@@ -25,14 +30,28 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class BloodResultActivity extends AppCompatActivity {
-    String data;
 
-    List<BloodGroup> bloodGroupList;
+    private String data;
+
+    private List<DonorModel> donorModelList;
+
+    private RecyclerView donorListRv;
+
+    private String requiredBlood;
+    private String preferredLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_result);
+
+        donorListRv = findViewById(R.id.donor_list_rv);
+        donorListRv.setLayoutManager(new LinearLayoutManager(this));
+
+        Intent intent = getIntent();
+
+        requiredBlood = intent.getStringExtra("bloodGroup");
+        preferredLocation = intent.getStringExtra("location");
 
         new ParseResult().execute();
     }
@@ -40,12 +59,11 @@ public class BloodResultActivity extends AppCompatActivity {
 
     public class ParseResult extends AsyncTask<Void, Void, Void>{
 
-
         @Override
         protected Void doInBackground(Void... voids) {
 
             try {
-                data = getData("https://miu-blood-donors.firebaseio.com/.json");
+                data = getData(Variables.BASE_URL + requiredBlood +".json");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -57,46 +75,37 @@ public class BloodResultActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            bloodGroupList = new ArrayList<>();
+            donorModelList = new ArrayList<>();
 
             Gson gson = new Gson();
-            Type mapType = new TypeToken<Map<String, Map<String, DonorList>>>() {}.getType();
-            Map<String,Map<String, DonorList>> map = gson.fromJson(data, mapType);
+            Type mapType = new TypeToken<Map<String, DonorList>>() {}.getType();
+            Map<String, DonorList> map = gson.fromJson(data, mapType);
             System.out.println(map.size());
 
 
-            Set<Map.Entry<String,Map<String, DonorList>>> entrySet = map.entrySet();
+            Set<Map.Entry<String, DonorList>> entrySet = map.entrySet();
             Iterator iterator = entrySet.iterator ();
-
 
             for(int j = 0; j < entrySet.size(); j++) {
 
                 try {
                     Map.Entry entry = (Map.Entry) iterator.next();
                     String key = entry.getKey().toString();
-                    Map<String, DonorList> donorEntry = map.get(key);
 
-                    Set<Map.Entry<String, DonorList>> entrySet1 = donorEntry.entrySet();
-                    Iterator iterator1 = entrySet1.iterator ();
+                    System.out.println("Check: " + key);
 
-                    List<DonorList> donorLists = new ArrayList<>();
+                    DonorList donorEntry = map.get(key);
 
-                    for(int k = 0; k < entrySet1.size(); k++) {
-                        try {
-                            Map.Entry entry1 = (Map.Entry) iterator1.next();
-                            String mobilekey = entry1.getKey().toString();
-                            DonorList donors = donorEntry.get(mobilekey);
+                    System.out.println("Check: " + donorEntry.toString());
 
-                            donorLists.add(donors);
-                        }
-                        catch(NoSuchElementException e) {
-                            e.printStackTrace();
-                        }
+                    if (donorEntry.getLocation().equals(preferredLocation)) {
+
+                        DonorModel donorModel = new DonorModel(key, donorEntry);
+
+                        System.out.println("Check: " + donorModel.toString());
+
+                        donorModelList.add(donorModel);
                     }
-
-                    BloodGroup bloodGroup = new BloodGroup(key, donorLists);
-
-                    bloodGroupList.add(bloodGroup);
 
                 }
                 catch(NoSuchElementException e) {
@@ -104,7 +113,10 @@ public class BloodResultActivity extends AppCompatActivity {
                 }
             }
 
-            System.out.println("Test "+ bloodGroupList.toString());
+            System.out.println("Test: "+ donorModelList.toString());
+
+            DonorListAdapter donorListAdapter = new DonorListAdapter(donorModelList, BloodResultActivity.this);
+            donorListRv.setAdapter(donorListAdapter);
 
         }
     }

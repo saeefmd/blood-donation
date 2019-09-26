@@ -76,12 +76,6 @@ public class SignUpFragment extends Fragment {
         });
     }
 
-    private void switchToUserInfoFragment() {
-
-        getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_activity_fragment_container, new UserInfoFragment()).addToBackStack(null).commit();
-    }
-
     private void switchToLogInFragment() {
 
         getActivity().getSupportFragmentManager().beginTransaction()

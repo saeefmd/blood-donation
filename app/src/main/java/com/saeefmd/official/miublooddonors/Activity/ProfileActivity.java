@@ -2,6 +2,7 @@ package com.saeefmd.official.miublooddonors.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import com.saeefmd.official.miublooddonors.R;
 public class ProfileActivity extends AppCompatActivity {
 
     private Spinner bloodGroupsSpinner;
+    private Spinner locationsSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         bloodGroupsSpinner = findViewById(R.id.profile_spinner_blood_groups);
+        locationsSpinner = findViewById(R.id.profile_spinner_locations);
 
         setSpinners();
 
@@ -30,6 +33,12 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String requiredBlood = bloodGroupInText(bloodGroupsSpinner.getSelectedItem().toString());
+                String preferredLocation = locationsSpinner.getSelectedItem().toString();
+
+                Intent intent = new Intent(ProfileActivity.this, BloodResultActivity.class);
+                intent.putExtra("bloodGroup", requiredBlood);
+                intent.putExtra("location", preferredLocation);
+                startActivity(intent);
 
 
             }
@@ -66,5 +75,10 @@ public class ProfileActivity extends AppCompatActivity {
                 R.array.array_blood_groups, android.R.layout.simple_spinner_item);
         bloodGroupsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodGroupsSpinner.setAdapter(bloodGroupsAdapter);
+
+        ArrayAdapter<CharSequence> locationsAdapter = ArrayAdapter.createFromResource(ProfileActivity.this,
+                R.array.array_locations, android.R.layout.simple_spinner_item);
+        locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locationsSpinner.setAdapter(locationsAdapter);
     }
 }

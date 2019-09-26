@@ -4,34 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
     android:gravity="center"
+    android:background="@color/backgroundColor"
     tools:context=".Fragments.LogInFragment">
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_box_shape"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_email_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:background="@android:color/transparent"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/login_box_shape">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_password_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:background="@android:color/transparent"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -43,19 +53,19 @@
         android:text="@string/log_in_bt"
         android:textColor="#FFFFFF"
         android:textAllCaps="false"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/upperColor"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_here"/>
+            android:text="@string/new_here" />
 
         <TextView
             android:id="@+id/login_sign_up_tv"
@@ -63,8 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:textStyle="italic"
-            android:textColor="#3D5AFE"
+            android:textColor="@color/colorPrimary"
             android:textSize="15sp"
+            android:shadowColor="@color/baseColor"
             android:text="@string/register"/>
 
     </LinearLayout>

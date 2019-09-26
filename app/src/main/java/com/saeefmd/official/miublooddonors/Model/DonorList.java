@@ -23,6 +23,17 @@ public class DonorList {
     @SerializedName("studentId")
     @Expose
     private String studentId;
+    @SerializedName("bloodGroup")
+    @Expose
+    private String bloodGroup;
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
 
     public String getBatch() {
         return batch;

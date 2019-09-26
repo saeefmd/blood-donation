@@ -63,7 +63,7 @@ public class EmailAuthentication {
 
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(context, "Verification link sent. Please check your email.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Verification link sent. Please check your email.", Toast.LENGTH_LONG).show();
                         } else {
 
                             Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -89,9 +89,7 @@ public class EmailAuthentication {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Log.i("Name: ", user.getEmail());
 
-                                Intent intent = new Intent(context, ProfileActivity.class);
-                                context.startActivity(intent);
-                                ((Activity)context).finish();
+
                             } else {
 
                                 Toast.makeText(context, "Please verify your email", Toast.LENGTH_SHORT).show();

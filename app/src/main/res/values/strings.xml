@@ -8,15 +8,16 @@
     <string name="hint_email">E-mail</string>
     <string name="hint_password">Password</string>
     <string name="log_in_bt">Log In</string>
-    <string name="new_here">New here?</string>
+    <string name="new_here">Do not have an account?</string>
     <string name="register">Sign Up</string>
 
     <!-- SignUpFragment -->
+    <string name="get_started_text">Get Started..!</string>
     <string name="sign_up_bt">Sign Up</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="hint_phone">Mobile Number</string>
 
-    <!-- UserInfoFragment -->
+    <!-- UserInfoActivity -->
     <string name="info_mobile">Mobile Number</string>
     <string name="info_first_name">First Name</string>
     <string name="info_last_name">Last Name</string>
@@ -26,6 +27,11 @@
     <string name="button_continue">Continue</string>
 
     <string name="info_department">Department</string>
+    <string name="info_blood_group">Blood Group</string>
+
+    <string name="info_location">Location</string>
+
+    <string name="search_button">Search</string>
     <string-array name="array_departments">
         <item>CSE</item>
         <item>EEE</item>
@@ -35,7 +41,6 @@
         <item>LLB</item>
     </string-array>
 
-    <string name="info_blood_group">Blood Group</string>
     <string-array name="array_blood_groups">
         <item>A+</item>
         <item>A-</item>
@@ -46,8 +51,6 @@
         <item>AB+</item>
         <item>AB-</item>
     </string-array>
-
-    <string name="info_location">Preferred Location</string>
     <string-array name="array_locations">
         <item>Mirpur</item>
         <item>Uttara</item>
@@ -64,7 +67,6 @@
     </string-array>
 
     <!-- Profile Activity -->
-    <string name="select_blood_group">Select Blood Group</string>
-    <string name="search_button">Search</string>
+    <string name="filter_text">Select Blood Group &#38; Location for Better Search Result</string>
 
 </resources>

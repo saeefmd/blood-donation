@@ -69,7 +69,7 @@ public class LogInFragment extends Fragment {
     private void switchToSignUpFragment() {
 
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_activity_fragment_container, new SignUpFragment()).commit();
+                .replace(R.id.main_activity_fragment_container, new SignUpFragment()).addToBackStack(null).commit();
     }
 
 }

@@ -1,12 +1,11 @@
-package com.saeefmd.official.miublooddonors.Fragments;
+package com.saeefmd.official.miublooddonors.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,14 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.saeefmd.official.miublooddonors.Model.UserInfo;
 import com.saeefmd.official.miublooddonors.R;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class UserInfoFragment extends Fragment {
+public class UserInfoActivity extends AppCompatActivity {
 
     private Spinner departmentsSpinner;
     private Spinner bloodGroupsSpinner;
@@ -52,35 +44,25 @@ public class UserInfoFragment extends Fragment {
     private DatabaseReference firebaseReference;
     private FirebaseDatabase firebaseDatabase;
 
-    public UserInfoFragment() {
-        // Required empty public constructor
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_info, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user_info);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        departmentsSpinner = findViewById(R.id.spinner_departments);
+        bloodGroupsSpinner = findViewById(R.id.spinner_blood_groups);
+        locationsSpinner = findViewById(R.id.spinner_locations);
 
-        departmentsSpinner = view.findViewById(R.id.spinner_departments);
-        bloodGroupsSpinner = view.findViewById(R.id.spinner_blood_groups);
-        locationsSpinner = view.findViewById(R.id.spinner_locations);
-
-        firstNameEt = view.findViewById(R.id.first_name_et);
-        lastNameEt = view.findViewById(R.id.last_name_et);
-        batchEt = view.findViewById(R.id.batch_no_et);
-        studentIdEt = view.findViewById(R.id.student_id_et);
-        mobileEt = view.findViewById(R.id.mobile_et);
+        firstNameEt = findViewById(R.id.first_name_et);
+        lastNameEt = findViewById(R.id.last_name_et);
+        batchEt = findViewById(R.id.batch_no_et);
+        studentIdEt = findViewById(R.id.student_id_et);
+        mobileEt = findViewById(R.id.mobile_et);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
 
-        continueBt = view.findViewById(R.id.user_info_continue_bt);
+        continueBt = findViewById(R.id.user_info_continue_bt);
 
         setSpinners();
 
@@ -114,19 +96,19 @@ public class UserInfoFragment extends Fragment {
 
         UserInfo userInfo = new UserInfo(name, department, studentId, batch, location, mobile, bloodGroup);
 
-        firebaseReference.setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseReference.child(userMobile).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
-                    Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserInfoActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserInfoActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-    
+
     private String bloodGroupInText(String group) {
 
         switch (group) {
@@ -146,26 +128,26 @@ public class UserInfoFragment extends Fragment {
                 return "AB_Positive";
             case "AB-":
                 return "AB_Negative";
-                default:
-                    return null;
+            default:
+                return null;
         }
     }
 
     private void setSpinners() {
 
-        ArrayAdapter<CharSequence> departmentsAdapter = ArrayAdapter.createFromResource(getContext(),
+        ArrayAdapter<CharSequence> departmentsAdapter = ArrayAdapter.createFromResource(UserInfoActivity.this,
                 R.array.array_departments, android.R.layout.simple_spinner_item);
         departmentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         departmentsSpinner.setAdapter(departmentsAdapter);
 
 
-        ArrayAdapter<CharSequence> bloodGroupsAdapter = ArrayAdapter.createFromResource(getContext(),
+        ArrayAdapter<CharSequence> bloodGroupsAdapter = ArrayAdapter.createFromResource(UserInfoActivity.this,
                 R.array.array_blood_groups, android.R.layout.simple_spinner_item);
         bloodGroupsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodGroupsSpinner.setAdapter(bloodGroupsAdapter);
 
 
-        ArrayAdapter<CharSequence> locationsAdapter = ArrayAdapter.createFromResource(getContext(),
+        ArrayAdapter<CharSequence> locationsAdapter = ArrayAdapter.createFromResource(UserInfoActivity.this,
                 R.array.array_locations, android.R.layout.simple_spinner_item);
         locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationsSpinner.setAdapter(locationsAdapter);
