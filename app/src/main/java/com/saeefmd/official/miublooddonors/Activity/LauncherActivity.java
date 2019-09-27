@@ -11,7 +11,7 @@ public class LauncherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(LauncherActivity.this, ProfileActivity.class);
+        Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

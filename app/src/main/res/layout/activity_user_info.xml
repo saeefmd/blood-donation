@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:weightSum="3">
 
@@ -33,6 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
+                style="@style/info_box_style"
                 android:textSize="12sp"/>
 
         </LinearLayout>
@@ -41,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:weightSum="3">
 
@@ -58,6 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
+                style="@style/info_box_style"
                 android:textSize="12sp"/>
 
         </LinearLayout>
@@ -66,7 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
@@ -80,13 +79,19 @@
                 style="@style/user_info_text"
                 android:layout_gravity="center_vertical"/>
 
-            <Spinner
-                android:id="@+id/spinner_departments"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:textAlignment="center">
-            </Spinner>
+                android:background="@drawable/login_box_shape"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinner_departments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+                </Spinner>
+            </FrameLayout>
 
         </LinearLayout>
 
@@ -94,7 +99,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:weightSum="3">
 
@@ -112,6 +116,7 @@
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
+                style="@style/info_box_style"
                 android:inputType="number"/>
 
         </LinearLayout>
@@ -120,7 +125,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:weightSum="3">
 
@@ -137,6 +141,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
+                style="@style/info_box_style"
                 android:textSize="12sp"/>
 
         </LinearLayout>
@@ -145,7 +150,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:weightSum="3">
 
@@ -162,6 +166,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
+                style="@style/info_box_style"
                 android:textSize="12sp"/>
 
         </LinearLayout>
@@ -170,7 +175,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
@@ -184,13 +188,19 @@
                 style="@style/user_info_text"
                 android:layout_gravity="center_vertical"/>
 
-            <Spinner
-                android:id="@+id/spinner_blood_groups"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:textAlignment="center">
-            </Spinner>
+                android:background="@drawable/login_box_shape"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinner_blood_groups"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+                </Spinner>
+            </FrameLayout>
 
         </LinearLayout>
 
@@ -198,7 +208,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/login_box_shape"
             android:layout_margin="5dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
@@ -212,13 +221,19 @@
                 style="@style/user_info_text"
                 android:layout_gravity="center_vertical"/>
 
-            <Spinner
-                android:id="@+id/spinner_locations"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:textAlignment="center">
-            </Spinner>
+                android:background="@drawable/login_box_shape"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinner_locations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+                </Spinner>
+            </FrameLayout>
 
         </LinearLayout>
 

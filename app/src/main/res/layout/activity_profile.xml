@@ -21,10 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/login_box_shape"
         android:layout_margin="5dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
         android:weightSum="4">
 
         <TextView
@@ -35,13 +32,19 @@
             style="@style/user_info_text"
             android:layout_gravity="center_vertical"/>
 
-        <Spinner
-            android:id="@+id/profile_spinner_blood_groups"
+        <FrameLayout
+            android:background="@drawable/login_box_shape"
             android:layout_width="0dp"
             android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:textAlignment="center">
-        </Spinner>
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/profile_spinner_blood_groups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center">
+            </Spinner>
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -49,10 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/login_box_shape"
         android:layout_margin="5dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
         android:weightSum="4">
 
         <TextView
@@ -63,22 +63,29 @@
             style="@style/user_info_text"
             android:layout_gravity="center_vertical"/>
 
-        <Spinner
-            android:id="@+id/profile_spinner_locations"
+        <FrameLayout
+            android:background="@drawable/login_box_shape"
             android:layout_width="0dp"
             android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:textAlignment="center">
-        </Spinner>
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/profile_spinner_locations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center">
+            </Spinner>
+        </FrameLayout>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/profile_search_bt"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/search_button"
         android:layout_margin="30dp"
+        android:layout_gravity="center"
         android:textAllCaps="false"
         android:background="@color/upperColor"
         android:textColor="#FFFFFF"/>

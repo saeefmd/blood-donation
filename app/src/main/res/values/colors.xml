@@ -4,7 +4,11 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#232b2b</color>
 
-    <color name="baseColor">#9974bf</color>
+    <!--<color name="baseColor">#9974bf</color>
     <color name="upperColor">#8157b8</color>
-    <color name="backgroundColor">#dcd0e5</color>
+    <color name="backgroundColor">#dcd0e5</color>-->
+
+    <color name="baseColor">#005b96</color>
+    <color name="upperColor">#03396c</color>
+    <color name="backgroundColor">#b3cde0</color>
 </resources>
