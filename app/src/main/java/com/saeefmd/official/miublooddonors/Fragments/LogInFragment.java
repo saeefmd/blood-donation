@@ -1,20 +1,31 @@
 package com.saeefmd.official.miublooddonors.Fragments;
 
-
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.saeefmd.official.miublooddonors.FirebaseUtilities.EmailAuthentication;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.saeefmd.official.miublooddonors.Activity.UserInfoActivity;
+import com.saeefmd.official.miublooddonors.Data.Variables;
 import com.saeefmd.official.miublooddonors.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class LogInFragment extends Fragment {
 
@@ -23,6 +34,8 @@ public class LogInFragment extends Fragment {
 
     private String userMail;
     private String userPassword;
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public LogInFragment() {
         // Required empty public constructor
@@ -52,8 +65,7 @@ public class LogInFragment extends Fragment {
                 userMail = loginEmailEt.getText().toString().trim();
                 userPassword = loginPasswordEt.getText().toString().trim();
 
-                EmailAuthentication emailAuthentication = new EmailAuthentication(userMail, userPassword, getContext());
-                emailAuthentication.signIn();
+                signIn(userMail, userPassword);
             }
         });
 
@@ -70,6 +82,45 @@ public class LogInFragment extends Fragment {
 
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_activity_fragment_container, new SignUpFragment()).addToBackStack(null).commit();
+    }
+
+    private void signIn(String mail, String password) {
+
+        // [START sign_in_with_email]
+        mAuth.signInWithEmailAndPassword(mail, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            if (mAuth.getCurrentUser().isEmailVerified()) {
+
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Log.i("Name: ", user.getEmail());
+
+                                SharedPreferences.Editor editor = getContext().getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+                                editor.putBoolean(Variables.USER_SIGNED_IN, true);
+                                editor.apply();
+
+                                Intent intent = new Intent(getContext(), UserInfoActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+
+                            } else {
+
+                                Toast.makeText(getContext(), "Please verify your email", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        } else {
+
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        // [END sign_in_with_email]
     }
 
 }

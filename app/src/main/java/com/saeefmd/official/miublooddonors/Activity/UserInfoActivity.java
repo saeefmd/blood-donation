@@ -3,6 +3,8 @@ package com.saeefmd.official.miublooddonors.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.saeefmd.official.miublooddonors.Data.Variables;
 import com.saeefmd.official.miublooddonors.Model.UserInfo;
 import com.saeefmd.official.miublooddonors.R;
 
@@ -24,6 +27,9 @@ public class UserInfoActivity extends AppCompatActivity {
     private Spinner departmentsSpinner;
     private Spinner bloodGroupsSpinner;
     private Spinner locationsSpinner;
+
+    private String firstName;
+    private String lastName;
 
     private String userName;
     private String userLocation;
@@ -70,7 +76,10 @@ public class UserInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                userName = firstNameEt.getText().toString() + " " + lastNameEt.getText().toString();
+                firstName = firstNameEt.getText().toString().trim();
+                lastName = lastNameEt.getText().toString().trim();
+
+                userName = firstName + " " + lastName;
                 userBatch = batchEt.getText().toString();
                 userMobile = mobileEt.getText().toString();
                 userStudentId = studentIdEt.getText().toString();
@@ -84,10 +93,16 @@ public class UserInfoActivity extends AppCompatActivity {
                         userBatch + "," + userStudentId + "," + userBloodGroup + "," +
                         userLocation + "," + userMobile);
 
-                firebaseReference = firebaseDatabase.getReference(bloodGroupText);
+                if (checkTextFields()) {
 
-                inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
-                        userMobile, userBloodGroup);
+                    firebaseReference = firebaseDatabase.getReference(bloodGroupText);
+
+                    inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
+                            userMobile, userBloodGroup);
+                } else {
+
+                    Toast.makeText(UserInfoActivity.this, "Please provide required information", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -101,7 +116,15 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
-                    Toast.makeText(UserInfoActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserInfoActivity.this, "Your Information Stored Successfully. Thank You", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences.Editor editor = getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+                    editor.putBoolean(Variables.FIRST_TIME_FLAG, false);
+                    editor.apply();
+
+                    Intent intent = new Intent(UserInfoActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(UserInfoActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -151,5 +174,29 @@ public class UserInfoActivity extends AppCompatActivity {
                 R.array.array_locations, android.R.layout.simple_spinner_item);
         locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationsSpinner.setAdapter(locationsAdapter);
+    }
+
+    private boolean checkTextFields() {
+
+        if (firstName.isEmpty()) {
+            firstNameEt.setError("Empty");
+        }
+
+        if (lastName.isEmpty()) {
+            lastNameEt.setError("Empty");
+        }
+
+        if (userMobile.isEmpty()) {
+            mobileEt.setError("Empty");
+        }
+
+        if (!firstName.isEmpty() && !lastName.isEmpty() && !userMobile.isEmpty() &&
+                !userDepartment.isEmpty() && !userBloodGroup.isEmpty() && !userLocation.isEmpty()) {
+
+            return true;
+        } else {
+
+            return false;
+        }
     }
 }

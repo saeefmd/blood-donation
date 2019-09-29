@@ -15,21 +15,21 @@
     <string name="get_started_text">Get Started..!</string>
     <string name="sign_up_bt">Sign Up</string>
     <string name="hint_confirm_password">Confirm Password</string>
-    <string name="hint_phone">Mobile Number</string>
+    <string name="hint_phone">Mobile*</string>
 
     <!-- UserInfoActivity -->
-    <string name="info_mobile">Mobile Number</string>
-    <string name="info_first_name">First Name</string>
-    <string name="info_last_name">Last Name</string>
+    <string name="info_mobile">Mobile Number*</string>
+    <string name="info_first_name">First Name*</string>
+    <string name="info_last_name">Last Name*</string>
     <string name="info_student_id">Student ID</string>
     <string name="info_email">E-mail</string>
     <string name="info_batch_no">Batch</string>
     <string name="button_continue">Continue</string>
 
-    <string name="info_department">Department</string>
-    <string name="info_blood_group">Blood Group</string>
+    <string name="info_department">Department*</string>
+    <string name="info_blood_group">Blood Group*</string>
 
-    <string name="info_location">Location</string>
+    <string name="info_location">Location*</string>
 
     <string name="search_button">Search</string>
     <string-array name="array_departments">
@@ -68,5 +68,14 @@
 
     <!-- Profile Activity -->
     <string name="filter_text">Select Blood Group &#38; Location for Better Search Result</string>
+    <string name="search_blood_group">Blood Group</string>
+    <string name="search_location">Location</string>
+
+    <!-- Blood Result Activity -->
+    <string name="no_result_text">No Result! </string>
+    <string name="reason_text_1">1. Check if you have active internet connection</string>
+    <string name="reason_text_2">2. If you have active internet connection but still no donor is appearing that means
+                                    there is no registered donor of your required blood group in your preferable area.
+                                    Try searching changing the location.</string>
 
 </resources>

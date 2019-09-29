@@ -3,7 +3,10 @@ package com.saeefmd.official.miublooddonors.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import com.saeefmd.official.miublooddonors.Data.Variables;
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -11,8 +14,25 @@ public class LauncherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        SharedPreferences mSharedPref = getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        boolean firstTimeFlag = mSharedPref.getBoolean(Variables.FIRST_TIME_FLAG, true);
+        boolean userSignedIn = mSharedPref.getBoolean(Variables.USER_SIGNED_IN, false);
+
+        if (firstTimeFlag && !userSignedIn) {
+
+            Intent intent = new Intent(LauncherActivity.this, LogInActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (firstTimeFlag && userSignedIn) {
+
+            Intent intent = new Intent(LauncherActivity.this, UserInfoActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+
+            Intent intent = new Intent(LauncherActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

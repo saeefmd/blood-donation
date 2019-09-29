@@ -21,61 +21,70 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:weightSum="4">
+        android:layout_margin="10dp">
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/info_blood_group"
-            style="@style/user_info_text"
-            android:layout_gravity="center_vertical"/>
-
-        <FrameLayout
-            android:background="@drawable/login_box_shape"
             android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:weightSum="4">
 
-            <Spinner
-                android:id="@+id/profile_spinner_blood_groups"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_blood_group"
+                style="@style/user_info_text"
+                android:layout_gravity="center_horizontal"/>
+
+            <FrameLayout
+                android:background="@drawable/login_box_shape"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center">
-            </Spinner>
-        </FrameLayout>
+                android:layout_margin="5dp">
 
-    </LinearLayout>
+                <Spinner
+                    android:id="@+id/profile_spinner_blood_groups"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+                </Spinner>
+            </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:weightSum="4">
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/info_location"
-            style="@style/user_info_text"
-            android:layout_gravity="center_vertical"/>
-
-        <FrameLayout
-            android:background="@drawable/login_box_shape"
             android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
 
-            <Spinner
-                android:id="@+id/profile_spinner_locations"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_location"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                style="@style/user_info_text"
+                android:layout_gravity="center_horizontal"/>
+
+            <FrameLayout
+                android:background="@drawable/login_box_shape"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center">
-            </Spinner>
-        </FrameLayout>
+                android:layout_margin="5dp">
+
+                <Spinner
+                    android:id="@+id/profile_spinner_locations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+                </Spinner>
+            </FrameLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

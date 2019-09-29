@@ -5,6 +5,7 @@ public class Variables {
     public static final String SHARED_PREFERENCE_DB = "saeefmd.official.miublooddonors";
 
     public static final String FIRST_TIME_FLAG = "firstTimeFlag";
+    public static final String USER_SIGNED_IN = "userSignedIn";
 
     public static final String CURRENT_USER_NAME = "currentUserName";
     public static final String CURRENT_USER_LOCATION = "currentUserLocation";

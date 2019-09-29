@@ -9,7 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.saeefmd.official.miublooddonors.FirebaseUtilities.EmailAuthentication;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.saeefmd.official.miublooddonors.R;
 
 import androidx.annotation.NonNull;
@@ -26,9 +30,11 @@ public class SignUpFragment extends Fragment {
     private EditText signupPasswordEt;
     private EditText signupConfirmPasswordEt;
 
-    private String email;
-    private String password;
+    private String userEmail;
+    private String userPassword;
     private String confirmPassword;
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -55,18 +61,16 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                email = signupEmailEt.getText().toString().trim();
-                password = signupPasswordEt.getText().toString().trim();
+                userEmail = signupEmailEt.getText().toString().trim();
+                userPassword = signupPasswordEt.getText().toString().trim();
                 confirmPassword = signupConfirmPasswordEt.getText().toString().trim();
 
                 boolean flag = checkTextFields();
 
                 if (flag) {
 
-                    EmailAuthentication emailAuthentication = new EmailAuthentication(email, password, getContext());
-                    emailAuthentication.createAccount();
+                    createAccount(userEmail, userPassword);
 
-                    switchToLogInFragment();
                 } else {
 
                     Toast.makeText(getContext(), "Please, Provide Info", Toast.LENGTH_SHORT).show();
@@ -84,11 +88,11 @@ public class SignUpFragment extends Fragment {
 
     private boolean checkTextFields() {
 
-        if (email.isEmpty()) {
+        if (userEmail.isEmpty()) {
             signupEmailEt.setError("Empty");
         }
 
-        if (password.isEmpty()) {
+        if (userPassword.isEmpty()) {
             signupPasswordEt.setError("Empty");
         }
 
@@ -96,16 +100,62 @@ public class SignUpFragment extends Fragment {
             signupConfirmPasswordEt.setError("Empty");
         }
 
-        if (!password.equals(confirmPassword)) {
+        if (!userPassword.equals(confirmPassword)) {
             signupConfirmPasswordEt.setError("Not Matched");
         }
 
-        if (!email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty()) {
-            if (password.equals(confirmPassword)) {
+        if (!userEmail.isEmpty() && !userPassword.isEmpty() && !confirmPassword.isEmpty()) {
+            if (userPassword.equals(confirmPassword)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public void createAccount(String mail, String password) {
+
+        // [START create_user_with_email]
+        mAuth.createUserWithEmailAndPassword(mail, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                            sendEmailVerification();
+                            switchToLogInFragment();
+
+                        } else {
+
+                            Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void sendEmailVerification() {
+
+        // Send verification userEmail
+        // [START send_email_verification]
+        final FirebaseUser user = mAuth.getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // [START_EXCLUDE]
+
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(getContext(), "Verification link sent. Please check your userEmail.", Toast.LENGTH_LONG).show();
+                        } else {
+
+                            Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        // [END_EXCLUDE]
+                    }
+                });
+        // [END send_email_verification]
     }
 }

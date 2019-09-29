@@ -1,6 +1,8 @@
 package com.saeefmd.official.miublooddonors.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +19,8 @@ import java.util.List;
 
 public class DonorListAdapter extends RecyclerView.Adapter {
 
-    List<DonorModel> donorModelList;
-    Context context;
+    private List<DonorModel> donorModelList;
+    private Context context;
 
     public DonorListAdapter(List<DonorModel> donorModelList, Context context) {
         this.donorModelList = donorModelList;
@@ -42,6 +44,32 @@ public class DonorListAdapter extends RecyclerView.Adapter {
         ((MyViewHolder) viewHolder).donorDepartmentTv.setText(donorModelList.get(position).getDonorList().getDepartment());
         ((MyViewHolder) viewHolder).donorLocationTv.setText(donorModelList.get(position).getDonorList().getLocation());
         ((MyViewHolder) viewHolder).donorMobileTv.setText(donorModelList.get(position).getDonorList().getMobile());
+
+        final String donorMobile = donorModelList.get(position).getDonorList().getMobile();
+        final String donorName = donorModelList.get(position).getDonorList().getName();
+        final String donorBloodGroup = donorModelList.get(position).getDonorList().getBloodGroup();
+
+        final String messageBody = "Hello " + donorName + ", I am badly in need of " + donorBloodGroup + " blood near your location. "
+                + "If you can donate blood then please contact as soon as possible. Thank You";
+
+        ((MyViewHolder) viewHolder).callBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                v.getContext().startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + donorMobile)));
+            }
+        });
+
+        ((MyViewHolder) viewHolder).messageBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + donorMobile));
+                intent.putExtra("sms_body", messageBody);
+                v.getContext().startActivity(intent);
+                //v.getContext().startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + donorMobile)));
+            }
+        });
     }
 
     @Override

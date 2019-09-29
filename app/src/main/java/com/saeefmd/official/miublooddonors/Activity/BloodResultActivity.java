@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -40,10 +44,19 @@ public class BloodResultActivity extends AppCompatActivity {
     private String requiredBlood;
     private String preferredLocation;
 
+    private ProgressBar progressBar;
+
+    private LinearLayout errorMessageLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_result);
+
+        progressBar = findViewById(R.id.progressBar);
+
+        errorMessageLayout = findViewById(R.id.error_message_layout);
+        errorMessageLayout.setVisibility(View.GONE);
 
         donorListRv = findViewById(R.id.donor_list_rv);
         donorListRv.setLayoutManager(new LinearLayoutManager(this));
@@ -53,11 +66,15 @@ public class BloodResultActivity extends AppCompatActivity {
         requiredBlood = intent.getStringExtra("bloodGroup");
         preferredLocation = intent.getStringExtra("location");
 
-        new ParseResult().execute();
+        try {
+            new ParseResult().execute();
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
 
-    public class ParseResult extends AsyncTask<Void, Void, Void>{
+    private class ParseResult extends AsyncTask<Void, Void, Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -72,51 +89,66 @@ public class BloodResultActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            progressBar.setVisibility(View.GONE);
+
             donorModelList = new ArrayList<>();
 
-            Gson gson = new Gson();
-            Type mapType = new TypeToken<Map<String, DonorList>>() {}.getType();
-            Map<String, DonorList> map = gson.fromJson(data, mapType);
-            System.out.println(map.size());
+            try {
 
+                Gson gson = new Gson();
+                Type mapType = new TypeToken<Map<String, DonorList>>() {}.getType();
+                Map<String, DonorList> map = gson.fromJson(data, mapType);
 
-            Set<Map.Entry<String, DonorList>> entrySet = map.entrySet();
-            Iterator iterator = entrySet.iterator ();
+                Set<Map.Entry<String, DonorList>> entrySet = map.entrySet();
+                Iterator iterator = entrySet.iterator();
 
-            for(int j = 0; j < entrySet.size(); j++) {
+                for (int j = 0; j < entrySet.size(); j++) {
 
-                try {
-                    Map.Entry entry = (Map.Entry) iterator.next();
-                    String key = entry.getKey().toString();
+                    try {
+                        Map.Entry entry = (Map.Entry) iterator.next();
+                        String key = entry.getKey().toString();
 
-                    System.out.println("Check: " + key);
+                        System.out.println("Check: " + key);
 
-                    DonorList donorEntry = map.get(key);
+                        DonorList donorEntry = map.get(key);
 
-                    System.out.println("Check: " + donorEntry.toString());
+                        System.out.println("Check: " + donorEntry.toString());
 
-                    if (donorEntry.getLocation().equals(preferredLocation)) {
+                        if (donorEntry.getLocation().equals(preferredLocation)) {
 
-                        DonorModel donorModel = new DonorModel(key, donorEntry);
+                            DonorModel donorModel = new DonorModel(key, donorEntry);
 
-                        System.out.println("Check: " + donorModel.toString());
+                            System.out.println("Check: " + donorModel.toString());
 
-                        donorModelList.add(donorModel);
+                            donorModelList.add(donorModel);
+                        }
+
+                    } catch (NoSuchElementException e) {
+                        e.printStackTrace();
                     }
+                }
+            } catch (Exception e) {
 
-                }
-                catch(NoSuchElementException e) {
-                    e.printStackTrace();
-                }
+                errorMessageLayout.setVisibility(View.VISIBLE);
             }
 
             System.out.println("Test: "+ donorModelList.toString());
 
-            DonorListAdapter donorListAdapter = new DonorListAdapter(donorModelList, BloodResultActivity.this);
-            donorListRv.setAdapter(donorListAdapter);
+            if ((donorModelList != null) && donorModelList.size() > 0 ) {
+
+                DonorListAdapter donorListAdapter = new DonorListAdapter(donorModelList, BloodResultActivity.this);
+                donorListRv.setAdapter(donorListAdapter);
+            }
 
         }
     }
