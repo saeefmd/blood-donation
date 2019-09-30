@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">MIU Blood Donors</string>
 
+    <string name="login_activity_label">Get Started</string>
+    <string name="userinfo_activity_label">Donor Registration</string>
+    <string name="help_activity_label">Help</string>
+
     <!-- Shared Preference Name -->
     <string name="shared_preference_db">com.saeefmd.official.miublooddonors</string>
 
@@ -32,6 +36,34 @@
     <string name="info_location">Location*</string>
 
     <string name="search_button">Search</string>
+    <string name="filter_text">Select Blood Group &#38; Location for Better Search Result</string>
+
+    <string name="search_blood_group">Blood Group</string>
+    <string name="search_location">Location</string>
+
+    <!-- Profile Activity -->
+    <string name="no_result_text">No Result! </string>
+    <string name="reason_text_1">1. Check if you have active internet connection</string>
+    <string name="reason_text_2">2. If you have active internet connection but still no donor is appearing that means
+                                    there is no registered donor of your required blood group in your preferable area.
+                                    Try searching changing the location.</string>
+    <string name="menu_item_help">Help</string>
+
+    <!-- Help Activity -->
+    <string name="about_text">ABOUT THE APP</string>
+    <string name="about_details_1">## This app is basically for the students of Manarat International University.
+                                    The main goal is to help each other if any one is in search of blood.</string>
+    <string name="about_details_2">## All the user data are stored under Google Firebase security protocol.</string>
+    <string name="about_details_3">## The more user registers the better the app will become on serving its main purpose.</string>
+    <string name="about_details_4">## This app does not contains any advertise.</string>
+
+    <string name="contact_developer">CONTACT DEVELOPER</string>
+    <string name="dev_name">Saeef MD Zulker Naeen</string>
+    <string name="dev_department">Department of CSE</string>
+    <string name="dev_varsity">Manarat International University</string>
+    <string name="dev_mail">Email : saeefmd.1435@gmail.com</string>
+
+    <!-- User Info Activity -->
     <string-array name="array_departments">
         <item>CSE</item>
         <item>EEE</item>
@@ -40,7 +72,6 @@
         <item>Journalism &#38; Media Studies</item>
         <item>LLB</item>
     </string-array>
-
     <string-array name="array_blood_groups">
         <item>A+</item>
         <item>A-</item>
@@ -65,17 +96,5 @@
         <item>Malibag</item>
         <item>Jatrabari</item>
     </string-array>
-
-    <!-- Profile Activity -->
-    <string name="filter_text">Select Blood Group &#38; Location for Better Search Result</string>
-    <string name="search_blood_group">Blood Group</string>
-    <string name="search_location">Location</string>
-
-    <!-- Blood Result Activity -->
-    <string name="no_result_text">No Result! </string>
-    <string name="reason_text_1">1. Check if you have active internet connection</string>
-    <string name="reason_text_2">2. If you have active internet connection but still no donor is appearing that means
-                                    there is no registered donor of your required blood group in your preferable area.
-                                    Try searching changing the location.</string>
 
 </resources>

@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -33,7 +35,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class BloodResultActivity extends AppCompatActivity {
+public class BloodResultActivity extends Activity {
 
     private String data;
 
@@ -43,10 +45,13 @@ public class BloodResultActivity extends AppCompatActivity {
 
     private String requiredBlood;
     private String preferredLocation;
+    private String bloodGroupText;
 
     private ProgressBar progressBar;
 
     private LinearLayout errorMessageLayout;
+
+    private TextView resultDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +59,21 @@ public class BloodResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_blood_result);
 
         progressBar = findViewById(R.id.progressBar);
+        resultDescription = findViewById(R.id.result_description_tv);
 
         errorMessageLayout = findViewById(R.id.error_message_layout);
-        errorMessageLayout.setVisibility(View.GONE);
+        errorMessageLayout.setVisibility(View.INVISIBLE);
 
         donorListRv = findViewById(R.id.donor_list_rv);
         donorListRv.setLayoutManager(new LinearLayoutManager(this));
 
         Intent intent = getIntent();
-
         requiredBlood = intent.getStringExtra("bloodGroup");
         preferredLocation = intent.getStringExtra("location");
+
+        bloodGroupText = bloodGroupInText(requiredBlood);
+
+        resultDescription.setText("Showing results for " + requiredBlood + " donors in " + preferredLocation);
 
         try {
             new ParseResult().execute();
@@ -80,7 +89,7 @@ public class BloodResultActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             try {
-                data = getData(Variables.BASE_URL + requiredBlood +".json");
+                data = getData(Variables.BASE_URL + bloodGroupText +".json");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -163,6 +172,29 @@ public class BloodResultActivity extends AppCompatActivity {
         try (Response response = client.newCall(request).execute()) {
             return response.body().string();
         }
+    }
 
+    private String bloodGroupInText(String group) {
+
+        switch (group) {
+            case "A+":
+                return "A_Positive";
+            case "A-":
+                return "A_Negative";
+            case "B+":
+                return "B_Positive";
+            case "B-":
+                return "B_Negative";
+            case "O+":
+                return "O_Positive";
+            case "O-":
+                return "O_Negative";
+            case "AB+":
+                return "AB_Positive";
+            case "AB-":
+                return "AB_Negative";
+            default:
+                return null;
+        }
     }
 }

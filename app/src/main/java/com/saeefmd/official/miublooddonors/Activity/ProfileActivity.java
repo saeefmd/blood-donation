@@ -10,6 +10,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                requiredBlood = bloodGroupInText(bloodGroupsSpinner.getSelectedItem().toString());
+                requiredBlood = bloodGroupsSpinner.getSelectedItem().toString();
                 preferredLocation = locationsSpinner.getSelectedItem().toString();
 
                 if (isNetworkAvailable()) {
@@ -56,30 +58,6 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private String bloodGroupInText(String group) {
-
-        switch (group) {
-            case "A+":
-                return "A_Positive";
-            case "A-":
-                return "A_Negative";
-            case "B+":
-                return "B_Positive";
-            case "B-":
-                return "B_Negative";
-            case "O+":
-                return "O_Positive";
-            case "O-":
-                return "O_Negative";
-            case "AB+":
-                return "AB_Positive";
-            case "AB-":
-                return "AB_Negative";
-            default:
-                return null;
-        }
     }
 
     private void setSpinners() {
@@ -122,5 +100,26 @@ public class ProfileActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_help_option:
+                Intent intent = new Intent(ProfileActivity.this, HelpActivity.class);
+                startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

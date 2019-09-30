@@ -9,17 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.saeefmd.official.miublooddonors.Activity.UserInfoActivity;
 import com.saeefmd.official.miublooddonors.Data.Variables;
 import com.saeefmd.official.miublooddonors.R;
+import com.saeefmd.official.miublooddonors.Utilities.NetworkCheck;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +31,8 @@ import androidx.fragment.app.Fragment;
 import static android.content.Context.MODE_PRIVATE;
 
 public class LogInFragment extends Fragment {
+
+    private LinearLayout loginLayout;
 
     private EditText loginEmailEt;
     private EditText loginPasswordEt;
@@ -53,6 +58,7 @@ public class LogInFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        loginLayout = view.findViewById(R.id.login_layout);
         loginEmailEt = view.findViewById(R.id.login_email_et);
         loginPasswordEt = view.findViewById(R.id.login_password_et);
         Button loginBt = view.findViewById(R.id.log_in_bt);
@@ -65,7 +71,16 @@ public class LogInFragment extends Fragment {
                 userMail = loginEmailEt.getText().toString().trim();
                 userPassword = loginPasswordEt.getText().toString().trim();
 
-                signIn(userMail, userPassword);
+                NetworkCheck networkCheck = new NetworkCheck(getContext());
+
+                if (checkTextFields()) {
+                    if (networkCheck.isNetworkAvailable()) {
+                        signIn(userMail, userPassword);
+                    } else {
+                        Snackbar snackbar = Snackbar.make(loginLayout, "No Internet!", Snackbar.LENGTH_SHORT);
+                        snackbar.show();
+                    }
+                }
             }
         });
 
@@ -123,4 +138,23 @@ public class LogInFragment extends Fragment {
         // [END sign_in_with_email]
     }
 
+    private boolean checkTextFields() {
+
+        if (userMail.isEmpty()) {
+            loginEmailEt.setError("Empty");
+        }
+
+        if (userPassword.isEmpty()) {
+            loginPasswordEt.setError("Empty");
+        }
+
+        if (!userMail.isEmpty() && !userPassword.isEmpty()) {
+
+            return true;
+
+        } else {
+
+            return false;
+        }
+    }
 }

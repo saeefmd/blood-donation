@@ -7,14 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.saeefmd.official.miublooddonors.R;
+import com.saeefmd.official.miublooddonors.Utilities.NetworkCheck;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +28,7 @@ import androidx.fragment.app.Fragment;
  */
 public class SignUpFragment extends Fragment {
 
+    private LinearLayout signupLayout;
 
     private EditText signupEmailEt;
     private EditText signupPasswordEt;
@@ -52,6 +56,7 @@ public class SignUpFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        signupLayout = view.findViewById(R.id.signup_layout);
         signupEmailEt = view.findViewById(R.id.signup_email_et);
         signupPasswordEt = view.findViewById(R.id.signup_password_et);
         signupConfirmPasswordEt = view.findViewById(R.id.signup_confirm_password_et);
@@ -65,15 +70,18 @@ public class SignUpFragment extends Fragment {
                 userPassword = signupPasswordEt.getText().toString().trim();
                 confirmPassword = signupConfirmPasswordEt.getText().toString().trim();
 
-                boolean flag = checkTextFields();
+                NetworkCheck networkCheck = new NetworkCheck(getContext());
 
-                if (flag) {
+                if (checkTextFields()) {
 
-                    createAccount(userEmail, userPassword);
+                    if (networkCheck.isNetworkAvailable()) {
 
-                } else {
+                        createAccount(userEmail, userPassword);
+                    } else {
 
-                    Toast.makeText(getContext(), "Please, Provide Info", Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar.make(signupLayout, "No Internet!", Snackbar.LENGTH_SHORT);
+                        snackbar.show();
+                    }
                 }
 
             }
