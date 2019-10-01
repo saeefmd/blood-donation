@@ -157,6 +157,9 @@ public class BloodResultActivity extends Activity {
 
                 DonorListAdapter donorListAdapter = new DonorListAdapter(donorModelList, BloodResultActivity.this);
                 donorListRv.setAdapter(donorListAdapter);
+            } else {
+
+                errorMessageLayout.setVisibility(View.VISIBLE);
             }
 
         }

@@ -74,6 +74,6 @@
         android:text="@string/sign_up_bt"
         android:textColor="#FFFFFF"
         android:textAllCaps="false"
-        android:background="@color/upperColor"/>
+        android:background="@drawable/button_shape"/>
 
 </LinearLayout>
