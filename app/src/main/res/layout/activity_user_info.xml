@@ -33,8 +33,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                style="@style/info_box_style"
-                android:textSize="12sp"/>
+                style="@style/info_box_style"/>
 
         </LinearLayout>
 
@@ -58,8 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                style="@style/info_box_style"
-                android:textSize="12sp"/>
+                style="@style/info_box_style"/>
 
         </LinearLayout>
 
@@ -114,7 +112,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 style="@style/info_box_style"
                 android:inputType="number"/>
 
@@ -140,8 +137,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                style="@style/info_box_style"
-                android:textSize="12sp"/>
+                style="@style/info_box_style"/>
 
         </LinearLayout>
 
@@ -165,8 +161,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                style="@style/info_box_style"
-                android:textSize="12sp"/>
+                style="@style/info_box_style"/>
 
         </LinearLayout>
 
@@ -195,7 +190,9 @@
                     android:id="@+id/spinner_blood_groups"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center">
+                    android:textAlignment="center"
+                    android:scaleX=".9"
+                    android:scaleY=".9">
                 </Spinner>
             </FrameLayout>
 

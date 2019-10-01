@@ -22,6 +22,8 @@
 
     <style name="info_box_style">
         <item name="android:background">@drawable/login_box_shape</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/upperColor</item>
     </style>
 
     <style name="result_text_type">
