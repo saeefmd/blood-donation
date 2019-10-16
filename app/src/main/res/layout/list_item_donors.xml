@@ -71,7 +71,7 @@
                 android:text="Call"
                 android:textAllCaps="false"
                 android:layout_margin="2dp"
-                android:background="@color/upperColor"
+                android:background="@drawable/button_shape"
                 android:textColor="#FFFFFF"
                 android:textSize="10sp"/>
 
@@ -82,7 +82,7 @@
                 android:text="Message"
                 android:textAllCaps="false"
                 android:layout_margin="2dp"
-                android:background="@color/upperColor"
+                android:background="@drawable/button_shape"
                 android:textColor="#FFFFFF"
                 android:textSize="10sp"/>
 

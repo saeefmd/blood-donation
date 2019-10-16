@@ -4,7 +4,7 @@
     package="com.saeefmd.official.miublooddonors">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/blood_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/blood_icon"

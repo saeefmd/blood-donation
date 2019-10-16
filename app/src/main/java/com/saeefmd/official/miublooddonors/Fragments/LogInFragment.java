@@ -63,6 +63,7 @@ public class LogInFragment extends Fragment {
         loginPasswordEt = view.findViewById(R.id.login_password_et);
         Button loginBt = view.findViewById(R.id.log_in_bt);
         TextView loginSignUpTv = view.findViewById(R.id.login_sign_up_tv);
+        TextView forgotPasswordTv = view.findViewById(R.id.forgot_password_tv);
 
         loginBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +85,14 @@ public class LogInFragment extends Fragment {
             }
         });
 
+        forgotPasswordTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                switchToPasswordResetFragment();
+            }
+        });
+
         loginSignUpTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +106,12 @@ public class LogInFragment extends Fragment {
 
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_activity_fragment_container, new SignUpFragment()).addToBackStack(null).commit();
+    }
+
+    private void switchToPasswordResetFragment() {
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_activity_fragment_container, new PasswordResetFragment()).addToBackStack(null).commit();
     }
 
     private void signIn(String mail, String password) {
