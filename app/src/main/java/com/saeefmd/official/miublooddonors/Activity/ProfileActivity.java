@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.saeefmd.official.miublooddonors.R;
 
@@ -46,16 +47,24 @@ public class ProfileActivity extends AppCompatActivity {
                 requiredBlood = bloodGroupsSpinner.getSelectedItem().toString();
                 preferredLocation = locationsSpinner.getSelectedItem().toString();
 
-                if (isNetworkAvailable()) {
+                if (!requiredBlood.equals("Select") && !preferredLocation.equals("Select")) {
 
-                    Intent intent = new Intent(ProfileActivity.this, BloodResultActivity.class);
-                    intent.putExtra("bloodGroup", requiredBlood);
-                    intent.putExtra("location", preferredLocation);
-                    startActivity(intent);
+                    if (isNetworkAvailable()) {
+
+                        Intent intent = new Intent(ProfileActivity.this, BloodResultActivity.class);
+                        intent.putExtra("bloodGroup", requiredBlood);
+                        intent.putExtra("location", preferredLocation);
+                        startActivity(intent);
+                    } else {
+
+                        alertDialogBuilder();
+                    }
                 } else {
 
-                    alertDialogBuilder();
+                    Toast.makeText(ProfileActivity.this, "Please select valid blood group and location", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
     }

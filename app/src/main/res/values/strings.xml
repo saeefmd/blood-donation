@@ -74,6 +74,7 @@
 
     <!-- User Info Activity -->
     <string-array name="array_departments">
+        <item>Select</item>
         <item>BBA</item>
         <item>CSE</item>
         <item>EEE</item>
@@ -83,6 +84,7 @@
         <item>LLB</item>
     </string-array>
     <string-array name="array_blood_groups">
+        <item>Select</item>
         <item>A+</item>
         <item>A-</item>
         <item>B+</item>
@@ -93,6 +95,7 @@
         <item>AB-</item>
     </string-array>
     <string-array name="array_locations">
+        <item>Select</item>
         <item>Mirpur</item>
         <item>Uttara</item>
         <item>Gulshan</item>
