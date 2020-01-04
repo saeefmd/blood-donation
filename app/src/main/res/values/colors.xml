@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#232b2b</color>
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryDark">#E65100</color>
+    <color name="colorAccent">#212121</color>
+
+    <color name="navigation_header_color">#607D8B</color>
+    <color name="quote_color">#607D8B</color>
+
+    <color name="background_color">#FFFFFF</color>
 
     <!--<color name="baseColor">#9974bf</color>
     <color name="upperColor">#8157b8</color>
     <color name="backgroundColor">#dcd0e5</color>-->
 
-    <color name="baseColor">#005b96</color>
-    <color name="upperColor">#03396c</color>
-    <color name="backgroundColor">#b3cde0</color>
+    <!--<color name="baseColor">#FF9800</color>
+    <color name="upperColor">#E65100</color>
+    <color name="backgroundColor">#FFFFFF</color>-->
 </resources>

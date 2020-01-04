@@ -7,63 +7,88 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/backgroundColor"
     tools:context=".Fragments.SignUpFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/login_box_shape"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:elevation="@dimen/login_box_elevation">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_email_et"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:background="@android:color/transparent"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:background="@drawable/login_box_shape">
 
-    <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_email_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/login_box_shape"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:elevation="@dimen/login_box_elevation">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_password_et"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/login_box_shape">
 
-            android:hint="@string/hint_password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:background="@android:color/transparent"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/login_box_shape"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:elevation="@dimen/login_box_elevation">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_confirm_password_et"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/hint_confirm_password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:background="@android:color/transparent"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:background="@drawable/login_box_shape">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_confirm_password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/hint_confirm_password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 
     <Button
         android:id="@+id/sign_up_bt"
@@ -74,6 +99,8 @@
         android:text="@string/sign_up_bt"
         android:textColor="#FFFFFF"
         android:textAllCaps="false"
-        android:background="@drawable/button_shape"/>
+        android:background="@drawable/button_ripple"
+        android:elevation="@dimen/button_elevation"
+        android:stateListAnimator="@animator/button_raise"/>
 
 </LinearLayout>

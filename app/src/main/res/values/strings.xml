@@ -11,10 +11,11 @@
     <!-- Log In Fragment -->
     <string name="hint_email">E-mail</string>
     <string name="hint_password">Password</string>
-    <string name="log_in_bt">Log In</string>
+    <string name="log_in_bt">Sign In</string>
     <string name="new_here">Do not have an account?</string>
     <string name="register">Sign Up</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="guest_login">Guest Sign In</string>
 
     <!-- Sign Up Fragment -->
     <string name="get_started_text">Get Started..!</string>
@@ -45,6 +46,7 @@
 
     <string name="search_blood_group">Blood Group</string>
     <string name="search_location">Location</string>
+    <string name="search_departments">Department (Optional)</string>
 
     <!-- Blood Result Activity -->
     <string name="no_result_text">No Result! </string>
@@ -116,5 +118,46 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- quotes_array and authors_array are synchronised together. Serial must not be broken -->
+    <string-array name="quotes_array">
+
+        <item>Politeness is the flower of humanity.</item>
+        <item>Be the reason someone smiles. Be the reason someone feels loved and believes in the goodness in people.</item>
+        <item>We are very, very small, but we are profoundly capable of very, very big things.</item>
+        <item>We make a living by what we get. We make a life by what we give.</item>
+        <item>We are all connected. When one arm or foot is poisoned, the whole body becomes infected.</item>
+        <item>Love life and life will love you back. Love people and they will love you back.</item>
+        <item>Everyone thinks of changing the world, but no one thinks of changing himself.</item>
+        <item>The sole meaning of life is to serve humanity.</item>
+        <item>Great thoughts speak only to the thoughtful mind, but great actions speak to all mankind.</item>
+        <item>The world will not be destroyed by those who do evil, but by those who watch them without doing anything.</item>
+        <item>Our human compassion binds us the one to the other – not in pity or patronizingly but as human beings who have learnt how to turn our common suffering into hope for the future.</item>
+        <item>We may have different religions, different languages, different colored skin, but we all belong to one human race. We all share the same basic values.</item>
+        <item>The simplest way to be happy is to do good.</item>
+        <item>Whoever saves one life, saves the world entire.</item>
+        <item>We have to do the best we are capable of. This is our sacred human responsibility.</item>
+
+    </string-array>
+
+    <string-array name="authors_array">
+
+        <item>- Joseph Joubert</item>
+        <item>- Roy T. Bennett</item>
+        <item>- Stephen Hawking</item>
+        <item>- Winston Churchill</item>
+        <item>- Suzy Kassem</item>
+        <item>- Arthur Rubinstein</item>
+        <item>- Leo Tolstoy</item>
+        <item>- Leo Tolstoy</item>
+        <item>- Theodore Roosevelt</item>
+        <item>- Albert Einstein</item>
+        <item>- Nelson Mandela</item>
+        <item>- Kofi Annan</item>
+        <item>- Helen Keller</item>
+        <item>- Thomas Keneally</item>
+        <item>- Albert Einstein</item>
+
+    </string-array>
 
 </resources>

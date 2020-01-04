@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.saeefmd.official.miublooddonors.Activity.ProfileActivity;
 import com.saeefmd.official.miublooddonors.Activity.UserInfoActivity;
 import com.saeefmd.official.miublooddonors.Data.Variables;
 import com.saeefmd.official.miublooddonors.R;
@@ -32,7 +33,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class LogInFragment extends Fragment {
 
-    private LinearLayout loginLayout;
+    private RelativeLayout loginLayout;
 
     private EditText loginEmailEt;
     private EditText loginPasswordEt;
@@ -64,6 +65,8 @@ public class LogInFragment extends Fragment {
         Button loginBt = view.findViewById(R.id.log_in_bt);
         TextView loginSignUpTv = view.findViewById(R.id.login_sign_up_tv);
         TextView forgotPasswordTv = view.findViewById(R.id.forgot_password_tv);
+
+        Button guestLogInBt = view.findViewById(R.id.guest_login_bt);
 
         loginBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +101,16 @@ public class LogInFragment extends Fragment {
             public void onClick(View v) {
 
                 switchToSignUpFragment();
+            }
+        });
+
+        guestLogInBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getContext(), ProfileActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
     }

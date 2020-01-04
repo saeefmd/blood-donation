@@ -85,24 +85,33 @@ public class UserInfoActivity extends AppCompatActivity {
                 userStudentId = studentIdEt.getText().toString();
 
                 userBloodGroup = bloodGroupsSpinner.getSelectedItem().toString();
-                String bloodGroupText = bloodGroupInText(userBloodGroup);
                 userDepartment = departmentsSpinner.getSelectedItem().toString();
                 userLocation = locationsSpinner.getSelectedItem().toString();
 
-                Log.i("Check", userName + "," + userDepartment + "," +
-                        userBatch + "," + userStudentId + "," + userBloodGroup + "," +
-                        userLocation + "," + userMobile);
+                if (!userBloodGroup.equals("Select") && !userDepartment.equals("Select") && !userLocation.equals("Select")) {
 
-                if (checkTextFields()) {
+                    String bloodGroupText = bloodGroupInText(userBloodGroup);
 
-                    firebaseReference = firebaseDatabase.getReference(bloodGroupText);
+                    Log.i("Check", userName + "," + userDepartment + "," +
+                            userBatch + "," + userStudentId + "," + userBloodGroup + "," +
+                            userLocation + "," + userMobile);
 
-                    inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
-                            userMobile, userBloodGroup);
+                    if (checkTextFields()) {
+
+                        firebaseReference = firebaseDatabase.getReference(bloodGroupText);
+
+                        inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
+                                userMobile, userBloodGroup);
+                    } else {
+
+                        Toast.makeText(UserInfoActivity.this, "Please provide required information", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
 
-                    Toast.makeText(UserInfoActivity.this, "Please provide required information", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserInfoActivity.this, "Please select valid values as blood group, location" +
+                            " & department", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }

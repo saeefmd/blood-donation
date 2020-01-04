@@ -2,43 +2,57 @@ package com.saeefmd.official.miublooddonors.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.saeefmd.official.miublooddonors.Data.Variables;
+import com.saeefmd.official.miublooddonors.R;
 
-public class LauncherActivity extends AppCompatActivity {
+public class LauncherActivity extends Activity {
+
+    private boolean firstTimeFlag;
+    private boolean userSignedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_launcher);
 
         SharedPreferences mSharedPref = getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
-        boolean firstTimeFlag = mSharedPref.getBoolean(Variables.FIRST_TIME_FLAG, true);
-        boolean userSignedIn = mSharedPref.getBoolean(Variables.USER_SIGNED_IN, false);
+        firstTimeFlag = mSharedPref.getBoolean(Variables.FIRST_TIME_FLAG, true);
+        userSignedIn = mSharedPref.getBoolean(Variables.USER_SIGNED_IN, false);
 
         Log.i("Flag Value: ", firstTimeFlag + " , " + userSignedIn);
 
-        if (firstTimeFlag && !userSignedIn) {
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
 
-            Intent intent = new Intent(LauncherActivity.this, LogInActivity.class);
-            startActivity(intent);
-            finish();
+                if (firstTimeFlag && !userSignedIn) {
 
-        } else if (firstTimeFlag && userSignedIn) {
+                    Intent intent = new Intent(LauncherActivity.this, LogInActivity.class);
+                    startActivity(intent);
+                    finish();
 
-            Intent intent = new Intent(LauncherActivity.this, UserInfoActivity.class);
-            startActivity(intent);
-            finish();
+                } else if (firstTimeFlag && userSignedIn) {
 
-        } else {
+                    Intent intent = new Intent(LauncherActivity.this, UserInfoActivity.class);
+                    startActivity(intent);
+                    finish();
 
-            Intent intent = new Intent(LauncherActivity.this, ProfileActivity.class);
-            startActivity(intent);
-            finish();
+                } else {
 
-        }
+                    Intent intent = new Intent(LauncherActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+            }
+        }, 1000);
+
     }
 }

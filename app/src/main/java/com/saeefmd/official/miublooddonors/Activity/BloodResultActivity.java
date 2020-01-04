@@ -45,6 +45,7 @@ public class BloodResultActivity extends Activity {
     private String requiredBlood;
     private String preferredLocation;
     private String bloodGroupText;
+    private String department;
 
     private ProgressBar progressBar;
 
@@ -69,10 +70,11 @@ public class BloodResultActivity extends Activity {
         Intent intent = getIntent();
         requiredBlood = intent.getStringExtra("bloodGroup");
         preferredLocation = intent.getStringExtra("location");
+        department = intent.getStringExtra("department");
 
         bloodGroupText = bloodGroupInText(requiredBlood);
 
-        resultDescription.setText("Showing results for " + requiredBlood + " donors in " + preferredLocation);
+        resultDescription.setText(requiredBlood + " Donors in " + preferredLocation);
 
         try {
             new ParseResult().execute();
@@ -132,13 +134,26 @@ public class BloodResultActivity extends Activity {
 
                         System.out.println("Check: " + donorEntry.toString());
 
-                        if (donorEntry.getLocation().equals(preferredLocation)) {
+                        if (!department.equals("Select")) {
 
-                            DonorModel donorModel = new DonorModel(key, donorEntry);
+                            if (donorEntry.getLocation().equals(preferredLocation) && donorEntry.getDepartment().equals(department)) {
 
-                            System.out.println("Check: " + donorModel.toString());
+                                DonorModel donorModel = new DonorModel(key, donorEntry);
 
-                            donorModelList.add(donorModel);
+                                System.out.println("Check: " + donorModel.toString());
+
+                                donorModelList.add(donorModel);
+                            }
+                        } else {
+
+                            if (donorEntry.getLocation().equals(preferredLocation)) {
+
+                                DonorModel donorModel = new DonorModel(key, donorEntry);
+
+                                System.out.println("Check: " + donorModel.toString());
+
+                                donorModelList.add(donorModel);
+                            }
                         }
 
                     } catch (NoSuchElementException e) {

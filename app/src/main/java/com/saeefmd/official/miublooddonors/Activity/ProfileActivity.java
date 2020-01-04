@@ -16,17 +16,26 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.saeefmd.official.miublooddonors.R;
+
+import java.util.Random;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private Spinner bloodGroupsSpinner;
     private Spinner locationsSpinner;
+    private Spinner departmentsSpinner;
 
     private String requiredBlood;
     private String preferredLocation;
+    private String department;
+
+    private TextView quoteTv;
+    private TextView authorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +44,24 @@ public class ProfileActivity extends AppCompatActivity {
 
         bloodGroupsSpinner = findViewById(R.id.profile_spinner_blood_groups);
         locationsSpinner = findViewById(R.id.profile_spinner_locations);
+        departmentsSpinner = findViewById(R.id.profile_spinner_departments);
 
         setSpinners();
 
-        Button searchBt = findViewById(R.id.profile_search_bt);
+        FloatingActionButton searchFab = findViewById(R.id.profile_search_fab);
 
-        searchBt.setOnClickListener(new View.OnClickListener() {
+        quoteTv = findViewById(R.id.quote_tv);
+        authorTv = findViewById(R.id.quote_author_tv);
+
+        setQuote();
+
+        searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 requiredBlood = bloodGroupsSpinner.getSelectedItem().toString();
                 preferredLocation = locationsSpinner.getSelectedItem().toString();
+                department = departmentsSpinner.getSelectedItem().toString();
 
                 if (!requiredBlood.equals("Select") && !preferredLocation.equals("Select")) {
 
@@ -54,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
                         Intent intent = new Intent(ProfileActivity.this, BloodResultActivity.class);
                         intent.putExtra("bloodGroup", requiredBlood);
                         intent.putExtra("location", preferredLocation);
+                        intent.putExtra("department", department);
                         startActivity(intent);
                     } else {
 
@@ -80,6 +97,25 @@ public class ProfileActivity extends AppCompatActivity {
                 R.array.array_locations, android.R.layout.simple_spinner_item);
         locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationsSpinner.setAdapter(locationsAdapter);
+
+        ArrayAdapter<CharSequence> departmentsAdapter = ArrayAdapter.createFromResource(ProfileActivity.this,
+                R.array.array_departments, android.R.layout.simple_spinner_item);
+        departmentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        departmentsSpinner.setAdapter(departmentsAdapter);
+    }
+
+    private void setQuote() {
+
+        String[] quotes = getResources().getStringArray(R.array.quotes_array);
+        String[] authors = getResources().getStringArray(R.array.authors_array);
+
+        int quotesCount = quotes.length;
+
+        Random random = new Random();
+        int randomValue = random.nextInt(quotesCount);
+
+        quoteTv.setText(quotes[randomValue]);
+        authorTv.setText(authors[randomValue]);
     }
 
     private boolean isNetworkAvailable() {

@@ -5,24 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.BloodResultActivity"
-    android:background="@color/backgroundColor">
+    tools:context=".Activity.BloodResultActivity">
 
-    <TextView
-        android:id="@+id/result_description_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/upperColor"
-        android:textStyle="bold"/>
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:id="@+id/result_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/donor_list_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/result_description_tv"/>
+        android:layout_below="@id/header_layout"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
