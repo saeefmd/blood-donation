@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="button_elevation">8dp</dimen>
+    <dimen name="user_info_box_elevation">1dp</dimen>
+    <dimen name="login_box_elevation">8dp</dimen>
+    <dimen name="search_box_elevation">4dp</dimen>
+
+    <dimen name="user_info_guide_text">14sp</dimen>
+    <dimen name="user_info_text">14sp</dimen>
+
+</resources>
