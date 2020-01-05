@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="350dp">
+
+    <FrameLayout
+        android:id="@+id/my_info_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:padding="15dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/my_info"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_info_header_layout"
+        android:layout_above="@id/my_info_footer_layout"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/my_info_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saeef MD Zulker Naeen"
+                android:textSize="14sp"
+                android:textColor="@color/quote_color"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:id="@+id/my_info_department_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE"
+                android:textSize="14sp"
+                android:textColor="@color/quote_color"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:id="@+id/my_info_blood_group_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="O+"
+                android:textSize="14sp"
+                android:textColor="@color/quote_color"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:id="@+id/my_info_location_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Savar"
+                android:textSize="14sp"
+                android:textColor="@color/quote_color"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:id="@+id/my_info_mobile_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01987783281"
+                android:textSize="14sp"
+                android:textColor="@color/quote_color"
+                android:layout_margin="2dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/my_info_footer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/my_info_update_bt"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/my_info_update_bt"
+            android:textAllCaps="false"
+            android:background="@color/colorPrimary"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/my_info_ok_bt"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/my_info_ok_bt"
+            android:textAllCaps="false"
+            android:background="@color/colorPrimary"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

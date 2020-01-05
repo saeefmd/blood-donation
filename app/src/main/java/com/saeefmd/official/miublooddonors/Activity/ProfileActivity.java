@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.saeefmd.official.miublooddonors.R;
+import com.saeefmd.official.miublooddonors.Utilities.MyInfoAlertDialog;
 
 import java.util.Random;
 
@@ -160,9 +161,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
+            case R.id.menu_current_user_info:
+                MyInfoAlertDialog myInfoAlertDialog = new MyInfoAlertDialog(ProfileActivity.this);
+                myInfoAlertDialog.show();
+                break;
+
             case R.id.menu_help_option:
                 Intent intent = new Intent(ProfileActivity.this, HelpActivity.class);
                 startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

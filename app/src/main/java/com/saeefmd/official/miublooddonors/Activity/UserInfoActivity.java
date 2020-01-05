@@ -98,6 +98,9 @@ public class UserInfoActivity extends AppCompatActivity {
 
                     if (checkTextFields()) {
 
+                        saveCurrentUser();
+
+                        assert bloodGroupText != null;
                         firebaseReference = firebaseDatabase.getReference(bloodGroupText);
 
                         inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
@@ -139,6 +142,19 @@ public class UserInfoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void saveCurrentUser() {
+
+        SharedPreferences.Editor editor = getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_NAME, userName);
+        editor.putString(Variables.CURRENT_USER_DEPARTMENT, userDepartment);
+        editor.putString(Variables.CURRENT_USER_BATCH, userBatch);
+        editor.putString(Variables.CURRENT_USER_STUDENT_ID, userStudentId);
+        editor.putString(Variables.CURRENT_USER_BLOOD_GROUP, userBloodGroup);
+        editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
+        editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);
+        editor.apply();
     }
 
     private String bloodGroupInText(String group) {

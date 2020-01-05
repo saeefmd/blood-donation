@@ -71,6 +71,8 @@
     <string name="dev_mail">Email : saeefmd.1435@gmail.com</string>
 
     <!-- Profile Activity -->
+
+    <string name="my_info">My Info</string>
     <string name="search_direction_text">Please select your required Blood Group and preferred Location
                                         and then click on Search Button</string>
 
@@ -159,5 +161,9 @@
         <item>- Albert Einstein</item>
 
     </string-array>
+
+    <!-- My Info Alert Dialog -->
+    <string name="my_info_update_bt">Update</string>
+    <string name="my_info_ok_bt">Got It</string>
 
 </resources>
