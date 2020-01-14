@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/my_info"
+            android:text="@string/are_u_sure"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAllCaps="true"/>
@@ -85,14 +85,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/my_info_cancel_bt"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/my_info_cancel_bt"
+            android:textAllCaps="false"
+            android:background="@drawable/button_ripple"
+            android:layout_margin="10dp"/>
 
         <Button
             android:id="@+id/my_info_ok_bt"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/my_info_ok_bt"
+            android:text="@string/my_info_save_bt"
             android:textAllCaps="false"
             android:background="@drawable/button_ripple"
             android:layout_margin="10dp"/>

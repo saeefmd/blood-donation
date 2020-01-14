@@ -22,6 +22,7 @@
     <string name="sign_up_bt">Sign Up</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="hint_phone">Mobile*</string>
+    <string name="sign_up_info">A verification email will be sent to your email. Click on the link to verify your account.</string>
 
     <!-- Password Reset Fragment -->
     <string name="reset_bt_text">Reset</string>
@@ -165,5 +166,10 @@
     <!-- My Info Alert Dialog -->
     <string name="my_info_update_bt">Update</string>
     <string name="my_info_ok_bt">Got It</string>
+    <string name="my_info_cancel_bt">Cancel</string>
+    <string name="my_info_save_bt">Save</string>
+    <string name="are_u_sure">Are you sure?</string>
+
+    <string name="custom_please_wait">Please Wait</string>
 
 </resources>

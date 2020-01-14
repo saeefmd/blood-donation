@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:text="@string/button_continue"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorAccent"
         android:textAllCaps="false"
         android:background="@drawable/button_ripple"
         android:elevation="@dimen/button_elevation"
@@ -114,6 +114,7 @@
                         android:id="@+id/spinner_departments"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/spinner_style"
                         android:textAlignment="center">
                     </Spinner>
                 </FrameLayout>
@@ -227,6 +228,7 @@
                         android:id="@+id/spinner_blood_groups"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/spinner_style"
                         android:textAlignment="center">
                     </Spinner>
                 </FrameLayout>
@@ -260,6 +262,7 @@
                         android:id="@+id/spinner_locations"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/spinner_style"
                         android:textAlignment="center">
                     </Spinner>
                 </FrameLayout>

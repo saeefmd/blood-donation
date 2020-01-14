@@ -3,6 +3,7 @@ package com.saeefmd.official.miublooddonors.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.saeefmd.official.miublooddonors.Data.Variables;
 import com.saeefmd.official.miublooddonors.Model.UserInfo;
 import com.saeefmd.official.miublooddonors.R;
+import com.saeefmd.official.miublooddonors.Utilities.ConfirmUserInfoDialog;
+import com.saeefmd.official.miublooddonors.Utilities.WaitAlertDialog;
 
 public class UserInfoActivity extends AppCompatActivity {
 
@@ -50,6 +53,8 @@ public class UserInfoActivity extends AppCompatActivity {
     private DatabaseReference firebaseReference;
     private FirebaseDatabase firebaseDatabase;
 
+    private WaitAlertDialog mWaitAlertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
+        mWaitAlertDialog = new WaitAlertDialog(UserInfoActivity.this);
 
         continueBt = findViewById(R.id.user_info_continue_bt);
 
@@ -98,13 +104,19 @@ public class UserInfoActivity extends AppCompatActivity {
 
                     if (checkTextFields()) {
 
-                        saveCurrentUser();
+                        //saveCurrentUser();
 
-                        assert bloodGroupText != null;
-                        firebaseReference = firebaseDatabase.getReference(bloodGroupText);
+                        ConfirmUserInfoDialog confirmUserInfoDialog = new ConfirmUserInfoDialog(UserInfoActivity.this, userName,
+                                userLocation, userBloodGroup, userDepartment, userMobile, userBatch, userStudentId);
+                        confirmUserInfoDialog.show();
 
-                        inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
-                                userMobile, userBloodGroup);
+                        //mWaitAlertDialog.show();
+
+                        /*assert bloodGroupText != null;
+                        firebaseReference = firebaseDatabase.getReference(bloodGroupText);*/
+
+                        //inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
+                                //userMobile, userBloodGroup);
                     } else {
 
                         Toast.makeText(UserInfoActivity.this, "Please provide required information", Toast.LENGTH_SHORT).show();
@@ -119,7 +131,7 @@ public class UserInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void inputUser(String name, String department, String studentId, String batch, String location, String mobile, String bloodGroup) {
+    /*private void inputUser(String name, String department, String studentId, String batch, String location, String mobile, String bloodGroup) {
 
         UserInfo userInfo = new UserInfo(name, department, studentId, batch, location, mobile, bloodGroup);
 
@@ -128,6 +140,8 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()) {
+
+                    mWaitAlertDialog.dismiss();
                     Toast.makeText(UserInfoActivity.this, "Your Information Stored Successfully. Thank You", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences.Editor editor = getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
@@ -138,6 +152,7 @@ public class UserInfoActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
+                    mWaitAlertDialog.dismiss();
                     Toast.makeText(UserInfoActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -155,7 +170,7 @@ public class UserInfoActivity extends AppCompatActivity {
         editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
         editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);
         editor.apply();
-    }
+    }*/
 
     private String bloodGroupInText(String group) {
 

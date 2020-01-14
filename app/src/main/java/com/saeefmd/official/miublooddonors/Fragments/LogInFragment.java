@@ -24,6 +24,7 @@ import com.saeefmd.official.miublooddonors.Activity.UserInfoActivity;
 import com.saeefmd.official.miublooddonors.Data.Variables;
 import com.saeefmd.official.miublooddonors.R;
 import com.saeefmd.official.miublooddonors.Utilities.NetworkCheck;
+import com.saeefmd.official.miublooddonors.Utilities.WaitAlertDialog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +43,8 @@ public class LogInFragment extends Fragment {
     private String userPassword;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    private WaitAlertDialog mWaitAlertDialog;
 
     public LogInFragment() {
         // Required empty public constructor
@@ -68,6 +71,8 @@ public class LogInFragment extends Fragment {
 
         Button guestLogInBt = view.findViewById(R.id.guest_login_bt);
 
+        mWaitAlertDialog = new WaitAlertDialog(getContext());
+
         loginBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +84,8 @@ public class LogInFragment extends Fragment {
 
                 if (checkTextFields()) {
                     if (networkCheck.isNetworkAvailable()) {
+                        mWaitAlertDialog.show();
+
                         signIn(userMail, userPassword);
                     } else {
                         Snackbar snackbar = Snackbar.make(loginLayout, "No Internet!", Snackbar.LENGTH_SHORT);
@@ -136,6 +143,8 @@ public class LogInFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
+                            mWaitAlertDialog.dismiss();
+
                             if (mAuth.getCurrentUser().isEmailVerified()) {
 
                                 // Sign in success, update UI with the signed-in user's information
@@ -158,6 +167,7 @@ public class LogInFragment extends Fragment {
 
                         } else {
 
+                            mWaitAlertDialog.dismiss();
                             // If sign in fails, display a message to the user.
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }

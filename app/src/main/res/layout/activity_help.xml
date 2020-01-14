@@ -72,7 +72,7 @@
             android:layout_marginTop="20dp"
             android:textColor="@color/colorPrimaryDark"/>
 
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -88,7 +88,7 @@
             android:text="@string/dev_varsity"
             android:textStyle="bold"
             android:layout_marginTop="5dp"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorPrimaryDark"/>-->
 
         <TextView
             android:layout_width="wrap_content"

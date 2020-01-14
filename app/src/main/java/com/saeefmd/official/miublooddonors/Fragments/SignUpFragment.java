@@ -1,6 +1,5 @@
 package com.saeefmd.official.miublooddonors.Fragments;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.saeefmd.official.miublooddonors.R;
 import com.saeefmd.official.miublooddonors.Utilities.NetworkCheck;
+import com.saeefmd.official.miublooddonors.Utilities.WaitAlertDialog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +39,8 @@ public class SignUpFragment extends Fragment {
     private String confirmPassword;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    private WaitAlertDialog mWaitAlertDialog;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -62,6 +64,8 @@ public class SignUpFragment extends Fragment {
         signupConfirmPasswordEt = view.findViewById(R.id.signup_confirm_password_et);
         Button signUpBt = view.findViewById(R.id.sign_up_bt);
 
+        mWaitAlertDialog = new WaitAlertDialog(getContext());
+
         signUpBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +79,7 @@ public class SignUpFragment extends Fragment {
                 if (checkTextFields()) {
 
                     if (networkCheck.isNetworkAvailable()) {
+                        mWaitAlertDialog.show();
 
                         createAccount(userEmail, userPassword);
                     } else {
@@ -129,6 +134,8 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            mWaitAlertDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
 
@@ -136,6 +143,7 @@ public class SignUpFragment extends Fragment {
                             switchToLogInFragment();
 
                         } else {
+                            mWaitAlertDialog.dismiss();
 
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -156,7 +164,7 @@ public class SignUpFragment extends Fragment {
 
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(getContext(), "Verification link sent. Please check your userEmail.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Verification link sent. Please check your Email.", Toast.LENGTH_LONG).show();
                         } else {
 
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();

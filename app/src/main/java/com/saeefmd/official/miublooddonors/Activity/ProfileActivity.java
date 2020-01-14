@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,6 +116,28 @@ public class ProfileActivity extends AppCompatActivity {
 
         quoteTv.setText(quotes[randomValue]);
         authorTv.setText(authors[randomValue]);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(ProfileActivity.this)
+                .setTitle("Exit Application")
+                .setMessage("Are you sure you want to exit?")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                        finish();
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton("No", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private boolean isNetworkAvailable() {
