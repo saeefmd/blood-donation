@@ -1,6 +1,4 @@
-package com.saeefmd.official.miublooddonors.Activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.saeefmd.official.miublooddonors.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import com.saeefmd.official.miublooddonors.Data.Variables;
+import com.saeefmd.official.miublooddonors.data.Variables;
 import com.saeefmd.official.miublooddonors.R;
 
 public class LauncherActivity extends Activity {

@@ -1,11 +1,7 @@
-package com.saeefmd.official.miublooddonors.Activity;
+package com.saeefmd.official.miublooddonors.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,15 +11,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.saeefmd.official.miublooddonors.Data.Variables;
-import com.saeefmd.official.miublooddonors.Model.UserInfo;
 import com.saeefmd.official.miublooddonors.R;
-import com.saeefmd.official.miublooddonors.Utilities.ConfirmUserInfoDialog;
-import com.saeefmd.official.miublooddonors.Utilities.WaitAlertDialog;
+import com.saeefmd.official.miublooddonors.utilities.ConfirmUserInfoDialog;
+import com.saeefmd.official.miublooddonors.utilities.WaitAlertDialog;
 
 public class UserInfoActivity extends AppCompatActivity {
 

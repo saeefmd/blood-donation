@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Fragments;
+package com.saeefmd.official.miublooddonors.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,12 +19,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.saeefmd.official.miublooddonors.Activity.ProfileActivity;
-import com.saeefmd.official.miublooddonors.Activity.UserInfoActivity;
-import com.saeefmd.official.miublooddonors.Data.Variables;
+import com.saeefmd.official.miublooddonors.activity.ProfileActivity;
+import com.saeefmd.official.miublooddonors.activity.UserInfoActivity;
+import com.saeefmd.official.miublooddonors.data.Variables;
 import com.saeefmd.official.miublooddonors.R;
-import com.saeefmd.official.miublooddonors.Utilities.NetworkCheck;
-import com.saeefmd.official.miublooddonors.Utilities.WaitAlertDialog;
+import com.saeefmd.official.miublooddonors.utilities.NetworkCheck;
+import com.saeefmd.official.miublooddonors.utilities.WaitAlertDialog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

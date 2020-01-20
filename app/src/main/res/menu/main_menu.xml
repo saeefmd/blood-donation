@@ -5,6 +5,9 @@
         android:title="@string/my_info"/>
 
     <item android:id="@+id/menu_help_option"
-        android:title="@string/menu_item_help"/>
+        android:title="@string/menu_item_about"/>
+
+    <item android:id="@+id/menu_contact_developer"
+        android:title="@string/developer_contact"/>
 
 </menu>

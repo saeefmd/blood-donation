@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Database;
+package com.saeefmd.official.miublooddonors.database;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Utilities;
+package com.saeefmd.official.miublooddonors.utilities;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -18,10 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.saeefmd.official.miublooddonors.Activity.ProfileActivity;
-import com.saeefmd.official.miublooddonors.Activity.UserInfoActivity;
-import com.saeefmd.official.miublooddonors.Data.Variables;
-import com.saeefmd.official.miublooddonors.Model.UserInfo;
+import com.saeefmd.official.miublooddonors.activity.ProfileActivity;
+import com.saeefmd.official.miublooddonors.data.Variables;
+import com.saeefmd.official.miublooddonors.model.UserInfo;
 import com.saeefmd.official.miublooddonors.R;
 
 import static android.content.Context.MODE_PRIVATE;

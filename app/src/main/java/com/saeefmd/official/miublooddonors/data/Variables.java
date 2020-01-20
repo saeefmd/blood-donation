@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Data;
+package com.saeefmd.official.miublooddonors.data;
 
 public class Variables {
 

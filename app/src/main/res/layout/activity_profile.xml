@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFF"
-    tools:context=".Activity.ProfileActivity">
+    tools:context=".activity.ProfileActivity">
 
     <RelativeLayout
         android:id="@+id/quotes_view"
@@ -145,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/login_box_shape"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:elevation="@dimen/login_box_elevation">
 
             <LinearLayout
@@ -184,7 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/login_box_shape"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:elevation="@dimen/login_box_elevation">
 
             <LinearLayout

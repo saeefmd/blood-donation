@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/general_dialog_height">
+
+    <FrameLayout
+        android:id="@+id/developer_info_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/button_color"
+        android:padding="15dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/developer_contact"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_below="@id/developer_info_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developer_name"
+            style="@style/developer_info_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developer_designation"
+            style="@style/developer_info_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developer_company"
+            style="@style/developer_info_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/developer_mail"
+            style="@style/developer_info_text"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/developer_info_footer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/developer_info_ok_bt"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/my_info_ok_bt"
+            android:textAllCaps="false"
+            android:background="@drawable/button_ripple"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

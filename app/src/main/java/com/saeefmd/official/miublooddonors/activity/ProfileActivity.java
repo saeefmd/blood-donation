@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Activity;
+package com.saeefmd.official.miublooddonors.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +20,9 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.saeefmd.official.miublooddonors.R;
-import com.saeefmd.official.miublooddonors.Utilities.MyInfoAlertDialog;
+import com.saeefmd.official.miublooddonors.utilities.AboutDialog;
+import com.saeefmd.official.miublooddonors.utilities.DeveloperInfoDialog;
+import com.saeefmd.official.miublooddonors.utilities.MyInfoAlertDialog;
 
 import java.util.Random;
 
@@ -188,8 +190,13 @@ public class ProfileActivity extends AppCompatActivity {
                 break;
 
             case R.id.menu_help_option:
-                Intent intent = new Intent(ProfileActivity.this, HelpActivity.class);
-                startActivity(intent);
+                AboutDialog aboutDialog = new AboutDialog(ProfileActivity.this);
+                aboutDialog.show();
+                break;
+
+            case R.id.menu_contact_developer:
+                DeveloperInfoDialog developerInfoDialog = new DeveloperInfoDialog(ProfileActivity.this);
+                developerInfoDialog.show();
                 break;
         }
 

@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Activity;
+package com.saeefmd.official.miublooddonors.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

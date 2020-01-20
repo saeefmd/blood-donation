@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Activity;
+package com.saeefmd.official.miublooddonors.activity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +15,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.saeefmd.official.miublooddonors.Adapter.DonorListAdapter;
-import com.saeefmd.official.miublooddonors.Data.Variables;
-import com.saeefmd.official.miublooddonors.Model.DonorModel;
-import com.saeefmd.official.miublooddonors.Model.DonorList;
+import com.saeefmd.official.miublooddonors.adapter.DonorListAdapter;
+import com.saeefmd.official.miublooddonors.data.Variables;
+import com.saeefmd.official.miublooddonors.model.DonorModel;
+import com.saeefmd.official.miublooddonors.model.DonorList;
 import com.saeefmd.official.miublooddonors.R;
 
 import java.io.IOException;

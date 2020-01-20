@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Utilities;
+package com.saeefmd.official.miublooddonors.utilities;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

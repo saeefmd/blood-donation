@@ -1,8 +1,8 @@
-package com.saeefmd.official.miublooddonors.Activity;
+package com.saeefmd.official.miublooddonors.activity;
 
 import android.os.Bundle;
 
-import com.saeefmd.official.miublooddonors.Fragments.LogInFragment;
+import com.saeefmd.official.miublooddonors.fragments.LogInFragment;
 import com.saeefmd.official.miublooddonors.R;
 
 import androidx.appcompat.app.AppCompatActivity;

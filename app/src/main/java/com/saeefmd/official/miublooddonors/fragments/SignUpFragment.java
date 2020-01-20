@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Fragments;
+package com.saeefmd.official.miublooddonors.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,8 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.saeefmd.official.miublooddonors.R;
-import com.saeefmd.official.miublooddonors.Utilities.NetworkCheck;
-import com.saeefmd.official.miublooddonors.Utilities.WaitAlertDialog;
+import com.saeefmd.official.miublooddonors.utilities.NetworkCheck;
+import com.saeefmd.official.miublooddonors.utilities.WaitAlertDialog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

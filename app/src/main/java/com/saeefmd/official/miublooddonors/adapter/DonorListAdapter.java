@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Adapter;
+package com.saeefmd.official.miublooddonors.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.saeefmd.official.miublooddonors.Model.DonorModel;
+import com.saeefmd.official.miublooddonors.model.DonorModel;
 import com.saeefmd.official.miublooddonors.R;
 
 import java.util.List;

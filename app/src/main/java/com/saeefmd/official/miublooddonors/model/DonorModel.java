@@ -1,4 +1,4 @@
-package com.saeefmd.official.miublooddonors.Model;
+package com.saeefmd.official.miublooddonors.model;
 
 public class DonorModel {
 
