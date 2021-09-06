@@ -19,7 +19,6 @@ import com.saeefmd.official.blood_donation.utilities.WaitAlertDialog;
 
 public class UserInfoActivity extends AppCompatActivity {
 
-    private Spinner departmentsSpinner;
     private Spinner bloodGroupsSpinner;
     private Spinner locationsSpinner;
 
@@ -29,15 +28,10 @@ public class UserInfoActivity extends AppCompatActivity {
     private String userName;
     private String userLocation;
     private String userBloodGroup;
-    private String userDepartment;
-    private String userBatch;
-    private String userStudentId;
     private String userMobile;
 
     private EditText firstNameEt;
     private EditText lastNameEt;
-    private EditText batchEt;
-    private EditText studentIdEt;
     private EditText mobileEt;
 
     private Button continueBt;
@@ -52,14 +46,11 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        departmentsSpinner = findViewById(R.id.spinner_departments);
         bloodGroupsSpinner = findViewById(R.id.spinner_blood_groups);
         locationsSpinner = findViewById(R.id.spinner_locations);
 
         firstNameEt = findViewById(R.id.first_name_et);
         lastNameEt = findViewById(R.id.last_name_et);
-        batchEt = findViewById(R.id.batch_no_et);
-        studentIdEt = findViewById(R.id.student_id_et);
         mobileEt = findViewById(R.id.mobile_et);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -78,20 +69,16 @@ public class UserInfoActivity extends AppCompatActivity {
                 lastName = lastNameEt.getText().toString().trim();
 
                 userName = firstName + " " + lastName;
-                userBatch = batchEt.getText().toString();
                 userMobile = mobileEt.getText().toString();
-                userStudentId = studentIdEt.getText().toString();
 
                 userBloodGroup = bloodGroupsSpinner.getSelectedItem().toString();
-                userDepartment = departmentsSpinner.getSelectedItem().toString();
                 userLocation = locationsSpinner.getSelectedItem().toString();
 
-                if (!userBloodGroup.equals("Select") && !userDepartment.equals("Select") && !userLocation.equals("Select")) {
+                if (!userBloodGroup.equals("Select") && !userLocation.equals("Select")) {
 
                     String bloodGroupText = bloodGroupInText(userBloodGroup);
 
-                    Log.i("Check", userName + "," + userDepartment + "," +
-                            userBatch + "," + userStudentId + "," + userBloodGroup + "," +
+                    Log.i("Check", userName + ","  +  userBloodGroup + "," +
                             userLocation + "," + userMobile);
 
                     if (checkTextFields()) {
@@ -99,7 +86,7 @@ public class UserInfoActivity extends AppCompatActivity {
                         //saveCurrentUser();
 
                         ConfirmUserInfoDialog confirmUserInfoDialog = new ConfirmUserInfoDialog(UserInfoActivity.this, userName,
-                                userLocation, userBloodGroup, userDepartment, userMobile, userBatch, userStudentId);
+                                userLocation, userBloodGroup, userMobile);
                         confirmUserInfoDialog.show();
 
                         //mWaitAlertDialog.show();
@@ -190,12 +177,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
     private void setSpinners() {
 
-        ArrayAdapter<CharSequence> departmentsAdapter = ArrayAdapter.createFromResource(UserInfoActivity.this,
-                R.array.array_departments, android.R.layout.simple_spinner_item);
-        departmentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        departmentsSpinner.setAdapter(departmentsAdapter);
-
-
         ArrayAdapter<CharSequence> bloodGroupsAdapter = ArrayAdapter.createFromResource(UserInfoActivity.this,
                 R.array.array_blood_groups, android.R.layout.simple_spinner_item);
         bloodGroupsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -223,7 +204,7 @@ public class UserInfoActivity extends AppCompatActivity {
         }
 
         if (!firstName.isEmpty() && !lastName.isEmpty() && !userMobile.isEmpty() &&
-                !userDepartment.isEmpty() && !userBloodGroup.isEmpty() && !userLocation.isEmpty()) {
+                !userBloodGroup.isEmpty() && !userLocation.isEmpty()) {
 
             return true;
         } else {

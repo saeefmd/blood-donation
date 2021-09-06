@@ -41,7 +41,6 @@ public class DonorListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
         ((MyViewHolder) viewHolder).donorNameTv.setText(donorModelList.get(position).getDonorData().getName());
-        ((MyViewHolder) viewHolder).donorDepartmentTv.setText(donorModelList.get(position).getDonorData().getDepartment());
         ((MyViewHolder) viewHolder).donorLocationTv.setText(donorModelList.get(position).getDonorData().getLocation());
         ((MyViewHolder) viewHolder).donorMobileTv.setText(donorModelList.get(position).getDonorData().getMobile());
 

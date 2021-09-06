@@ -45,7 +45,6 @@ public class BloodResultActivity extends Activity {
     private String requiredBlood;
     private String preferredLocation;
     private String bloodGroupText;
-    private String department;
 
     private ProgressBar progressBar;
 
@@ -70,7 +69,6 @@ public class BloodResultActivity extends Activity {
         Intent intent = getIntent();
         requiredBlood = intent.getStringExtra("bloodGroup");
         preferredLocation = intent.getStringExtra("location");
-        department = intent.getStringExtra("department");
 
         bloodGroupText = bloodGroupInText(requiredBlood);
 

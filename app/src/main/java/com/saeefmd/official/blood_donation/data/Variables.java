@@ -2,7 +2,7 @@ package com.saeefmd.official.blood_donation.data;
 
 public class Variables {
 
-    public static final String SHARED_PREFERENCE_DB = "saeefmd.official.miublooddonors";
+    public static final String SHARED_PREFERENCE_DB = "saeefmd.official.blood_donation";
 
     public static final String FIRST_TIME_FLAG = "firstTimeFlag";
     public static final String USER_SIGNED_IN = "userSignedIn";

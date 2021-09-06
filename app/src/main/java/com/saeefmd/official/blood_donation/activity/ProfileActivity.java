@@ -30,11 +30,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Spinner bloodGroupsSpinner;
     private Spinner locationsSpinner;
-    private Spinner departmentsSpinner;
 
     private String requiredBlood;
     private String preferredLocation;
-    private String department;
 
     private TextView quoteTv;
     private TextView authorTv;
@@ -46,7 +44,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         bloodGroupsSpinner = findViewById(R.id.profile_spinner_blood_groups);
         locationsSpinner = findViewById(R.id.profile_spinner_locations);
-        departmentsSpinner = findViewById(R.id.profile_spinner_departments);
 
         setSpinners();
 
@@ -63,7 +60,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                 requiredBlood = bloodGroupsSpinner.getSelectedItem().toString();
                 preferredLocation = locationsSpinner.getSelectedItem().toString();
-                department = departmentsSpinner.getSelectedItem().toString();
 
                 if (!requiredBlood.equals("Select") && !preferredLocation.equals("Select")) {
 
@@ -72,7 +68,6 @@ public class ProfileActivity extends AppCompatActivity {
                         Intent intent = new Intent(ProfileActivity.this, BloodResultActivity.class);
                         intent.putExtra("bloodGroup", requiredBlood);
                         intent.putExtra("location", preferredLocation);
-                        intent.putExtra("department", department);
                         startActivity(intent);
                     } else {
 
@@ -99,11 +94,6 @@ public class ProfileActivity extends AppCompatActivity {
                 R.array.array_locations, android.R.layout.simple_spinner_item);
         locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationsSpinner.setAdapter(locationsAdapter);
-
-        ArrayAdapter<CharSequence> departmentsAdapter = ArrayAdapter.createFromResource(ProfileActivity.this,
-                R.array.array_departments, android.R.layout.simple_spinner_item);
-        departmentsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        departmentsSpinner.setAdapter(departmentsAdapter);
     }
 
     private void setQuote() {

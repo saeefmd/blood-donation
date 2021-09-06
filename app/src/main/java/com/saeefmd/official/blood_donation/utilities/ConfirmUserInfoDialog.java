@@ -32,15 +32,11 @@ public class ConfirmUserInfoDialog extends Dialog {
     private String userName;
     private String userLocation;
     private String userBloodGroup;
-    private String userDepartment;
     private String userMobile;
-    private String userBatch;
-    private String userStudentId;
 
     private TextView userNameTv;
     private TextView userLocationTv;
     private TextView userBloodGroupTv;
-    private TextView userDepartmentTv;
     private TextView userMobileTv;
 
     private DatabaseReference firebaseReference;
@@ -48,17 +44,13 @@ public class ConfirmUserInfoDialog extends Dialog {
 
     WaitAlertDialog mWaitAlertDialog;
 
-    public ConfirmUserInfoDialog(Context context,String userName, String userLocation, String userBloodGroup,
-                                 String userDepartment, String userMobile, String userBatch, String userStudentId) {
+    public ConfirmUserInfoDialog(Context context,String userName, String userLocation, String userBloodGroup, String userMobile) {
         super(context);
         this.context = context;
         this.userName = userName;
         this.userLocation = userLocation;
         this.userBloodGroup = userBloodGroup;
-        this.userDepartment = userDepartment;
         this.userMobile = userMobile;
-        this.userBatch = userBatch;
-        this.userStudentId = userStudentId;
     }
 
     @Override
@@ -70,7 +62,6 @@ public class ConfirmUserInfoDialog extends Dialog {
         userNameTv = findViewById(R.id.my_info_name_tv);
         userLocationTv = findViewById(R.id.my_info_location_tv);
         userBloodGroupTv = findViewById(R.id.my_info_blood_group_tv);
-        userDepartmentTv = findViewById(R.id.my_info_department_tv);
         userMobileTv = findViewById(R.id.my_info_mobile_tv);
 
         mWaitAlertDialog = new WaitAlertDialog(context);
@@ -110,13 +101,12 @@ public class ConfirmUserInfoDialog extends Dialog {
         userNameTv.setText(userName);
         userLocationTv.setText("Location: " + userLocation);
         userBloodGroupTv.setText("Blood Group: " + userBloodGroup);
-        userDepartmentTv.setText("Department of " + userDepartment);
         userMobileTv.setText("Mobile: " + userMobile);
     }
 
     private void inputUser() {
 
-        UserInfo userInfo = new UserInfo(userName, userDepartment, userStudentId, userBatch, userLocation, userMobile, userBloodGroup);
+        UserInfo userInfo = new UserInfo(userName, userLocation, userMobile, userBloodGroup);
 
         firebaseReference.child(userMobile).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -146,9 +136,6 @@ public class ConfirmUserInfoDialog extends Dialog {
 
         SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
         editor.putString(Variables.CURRENT_USER_NAME, userName);
-        editor.putString(Variables.CURRENT_USER_DEPARTMENT, userDepartment);
-        editor.putString(Variables.CURRENT_USER_BATCH, userBatch);
-        editor.putString(Variables.CURRENT_USER_STUDENT_ID, userStudentId);
         editor.putString(Variables.CURRENT_USER_BLOOD_GROUP, userBloodGroup);
         editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
         editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);

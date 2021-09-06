@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:582396992806:android:bdd312ab4e73d9d45675e7",
+        "android_client_info": {
+          "package_name": "com.saeefmd.official.blood_donation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582396992806-2trecg62t9el913ghh2kk58ejdkot2i8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saeefmd.official.blood_donation",
+            "certificate_hash": "c51e51efafefcc0d29023358793f935697343996"
+          }
+        },
+        {
+          "client_id": "582396992806-71gtua8c0945tmvqgp5jnjt2035ukhqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmA7iOT7QAuz3ELVwnT0nVDePK-SGMUzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582396992806-71gtua8c0945tmvqgp5jnjt2035ukhqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:582396992806:android:0f6503aa0b12dc37",
         "android_client_info": {
           "package_name": "com.saeefmd.official.miublooddonors"
