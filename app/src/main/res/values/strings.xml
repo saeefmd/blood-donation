@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">MIU Blood Donors</string>
+    <string name="app_name">Blood Donation</string>
 
     <string name="login_activity_label">Get Started</string>
     <string name="userinfo_activity_label">Donor Registration</string>
     <string name="help_activity_label">Help</string>
 
     <!-- Shared Preference Name -->
-    <string name="shared_preference_db">com.saeefmd.official.miublooddonors</string>
+    <string name="shared_preference_db">com.saeefmd.official.blood_donation</string>
 
     <!-- Log In Fragment -->
     <string name="hint_email">E-mail</string>
