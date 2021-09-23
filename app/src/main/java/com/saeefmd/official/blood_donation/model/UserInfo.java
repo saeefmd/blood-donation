@@ -6,6 +6,9 @@ public class UserInfo {
     private String location;
     private String mobile;
     private String bloodGroup;
+    private String age;
+    private String gender;
+    private String lastDonateDate;
 
     public UserInfo(String name, String location, String mobile, String bloodGroup) {
 
