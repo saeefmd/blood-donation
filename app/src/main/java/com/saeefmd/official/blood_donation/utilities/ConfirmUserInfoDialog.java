@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.saeefmd.official.blood_donation.activity.ProfileActivity;
 import com.saeefmd.official.blood_donation.data.Variables;
 import com.saeefmd.official.blood_donation.model.UserInfo;
@@ -33,24 +35,30 @@ public class ConfirmUserInfoDialog extends Dialog {
     private String userLocation;
     private String userBloodGroup;
     private String userMobile;
+    private String userGender;
+    private String userAge;
 
     private TextView userNameTv;
     private TextView userLocationTv;
     private TextView userBloodGroupTv;
     private TextView userMobileTv;
+    private TextView userGenderTv;
+    private TextView userAgeTv;
 
     private DatabaseReference firebaseReference;
     private FirebaseDatabase firebaseDatabase;
 
     WaitAlertDialog mWaitAlertDialog;
 
-    public ConfirmUserInfoDialog(Context context,String userName, String userLocation, String userBloodGroup, String userMobile) {
+    public ConfirmUserInfoDialog(Context context,String userName, String userLocation, String userBloodGroup, String userMobile, String userGender, String userAge) {
         super(context);
         this.context = context;
         this.userName = userName;
         this.userLocation = userLocation;
         this.userBloodGroup = userBloodGroup;
         this.userMobile = userMobile;
+        this.userAge = userAge;
+        this.userGender = userGender;
     }
 
     @Override
@@ -63,6 +71,8 @@ public class ConfirmUserInfoDialog extends Dialog {
         userLocationTv = findViewById(R.id.my_info_location_tv);
         userBloodGroupTv = findViewById(R.id.my_info_blood_group_tv);
         userMobileTv = findViewById(R.id.my_info_mobile_tv);
+        userAgeTv = findViewById(R.id.my_info_age_tv);
+        userGenderTv = findViewById(R.id.my_info_gender_tv);
 
         mWaitAlertDialog = new WaitAlertDialog(context);
 
@@ -102,6 +112,8 @@ public class ConfirmUserInfoDialog extends Dialog {
         userLocationTv.setText("Location: " + userLocation);
         userBloodGroupTv.setText("Blood Group: " + userBloodGroup);
         userMobileTv.setText("Mobile: " + userMobile);
+        userGenderTv.setText("Gender: " + userGender);
+        userAgeTv.setText("Age: " + userAge);
     }
 
     private void inputUser() {
@@ -116,6 +128,8 @@ public class ConfirmUserInfoDialog extends Dialog {
 
                     mWaitAlertDialog.dismiss();
                     Toast.makeText(context, "Your Information Stored Successfully. Thank You", Toast.LENGTH_SHORT).show();
+
+                    subscribeToFcm(userBloodGroup);
 
                     SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
                     editor.putBoolean(Variables.FIRST_TIME_FLAG, false);
@@ -133,12 +147,13 @@ public class ConfirmUserInfoDialog extends Dialog {
     }
 
     private void saveCurrentUser() {
-
         SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
         editor.putString(Variables.CURRENT_USER_NAME, userName);
         editor.putString(Variables.CURRENT_USER_BLOOD_GROUP, userBloodGroup);
         editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
         editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);
+        editor.putString(Variables.CURRENT_USER_AGE, userAge);
+        editor.putString(Variables.CURRENT_USER_GENDER, userGender);
         editor.apply();
     }
 
@@ -164,5 +179,21 @@ public class ConfirmUserInfoDialog extends Dialog {
             default:
                 return null;
         }
+    }
+
+    private void subscribeToFcm(String bloodGroup) {
+
+        FirebaseMessaging.getInstance().subscribeToTopic(bloodGroup)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Subscription Successful";
+                        if (!task.isSuccessful()) {
+                            msg = "Subscription Failed";
+                        }
+                        Log.d("TAG", msg);
+                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

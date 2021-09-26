@@ -29,10 +29,14 @@ public class UserInfoActivity extends AppCompatActivity {
     private String userLocation;
     private String userBloodGroup;
     private String userMobile;
+    private String userAge;
+    private String userGender;
 
     private EditText firstNameEt;
     private EditText lastNameEt;
     private EditText mobileEt;
+    private EditText genderEt;
+    private EditText ageEt;
 
     private Button continueBt;
 
@@ -46,18 +50,11 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        bloodGroupsSpinner = findViewById(R.id.spinner_blood_groups);
-        locationsSpinner = findViewById(R.id.spinner_locations);
-
-        firstNameEt = findViewById(R.id.first_name_et);
-        lastNameEt = findViewById(R.id.last_name_et);
-        mobileEt = findViewById(R.id.mobile_et);
+        initViews();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         mWaitAlertDialog = new WaitAlertDialog(UserInfoActivity.this);
-
-        continueBt = findViewById(R.id.user_info_continue_bt);
 
         setSpinners();
 
@@ -86,7 +83,7 @@ public class UserInfoActivity extends AppCompatActivity {
                         //saveCurrentUser();
 
                         ConfirmUserInfoDialog confirmUserInfoDialog = new ConfirmUserInfoDialog(UserInfoActivity.this, userName,
-                                userLocation, userBloodGroup, userMobile);
+                                userLocation, userBloodGroup, userMobile, userGender, userAge);
                         confirmUserInfoDialog.show();
 
                         //mWaitAlertDialog.show();
@@ -110,46 +107,18 @@ public class UserInfoActivity extends AppCompatActivity {
         });
     }
 
-    /*private void inputUser(String name, String department, String studentId, String batch, String location, String mobile, String bloodGroup) {
+    private void initViews() {
+        bloodGroupsSpinner = findViewById(R.id.spinner_blood_groups);
+        locationsSpinner = findViewById(R.id.spinner_locations);
 
-        UserInfo userInfo = new UserInfo(name, department, studentId, batch, location, mobile, bloodGroup);
+        firstNameEt = findViewById(R.id.first_name_et);
+        lastNameEt = findViewById(R.id.last_name_et);
+        mobileEt = findViewById(R.id.mobile_et);
+        genderEt = findViewById(R.id.gender_et);
+        ageEt = findViewById(R.id.age_et);
 
-        firebaseReference.child(userMobile).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-
-                if (task.isSuccessful()) {
-
-                    mWaitAlertDialog.dismiss();
-                    Toast.makeText(UserInfoActivity.this, "Your Information Stored Successfully. Thank You", Toast.LENGTH_SHORT).show();
-
-                    SharedPreferences.Editor editor = getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
-                    editor.putBoolean(Variables.FIRST_TIME_FLAG, false);
-                    editor.apply();
-
-                    Intent intent = new Intent(UserInfoActivity.this, ProfileActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    mWaitAlertDialog.dismiss();
-                    Toast.makeText(UserInfoActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        continueBt = findViewById(R.id.user_info_continue_bt);
     }
-
-    private void saveCurrentUser() {
-
-        SharedPreferences.Editor editor = getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
-        editor.putString(Variables.CURRENT_USER_NAME, userName);
-        editor.putString(Variables.CURRENT_USER_DEPARTMENT, userDepartment);
-        editor.putString(Variables.CURRENT_USER_BATCH, userBatch);
-        editor.putString(Variables.CURRENT_USER_STUDENT_ID, userStudentId);
-        editor.putString(Variables.CURRENT_USER_BLOOD_GROUP, userBloodGroup);
-        editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
-        editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);
-        editor.apply();
-    }*/
 
     private String bloodGroupInText(String group) {
 

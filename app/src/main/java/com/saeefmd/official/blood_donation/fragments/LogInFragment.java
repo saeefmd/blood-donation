@@ -153,6 +153,7 @@ public class LogInFragment extends Fragment {
 
                                 SharedPreferences.Editor editor = getContext().getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
                                 editor.putBoolean(Variables.USER_SIGNED_IN, true);
+                                editor.putString(Variables.CURRENT_USER_EMAIL, userMail);
                                 editor.apply();
 
                                 Intent intent = new Intent(getContext(), UserInfoActivity.class);

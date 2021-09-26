@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Blood Donation</string>
 
+    <string name="default_notification_channel_id">1001</string>
+
     <string name="login_activity_label">Get Started</string>
     <string name="userinfo_activity_label">Donor Registration</string>
     <string name="help_activity_label">Help</string>
@@ -32,9 +34,9 @@
     <string name="info_mobile">Mobile Number*</string>
     <string name="info_first_name">First Name*</string>
     <string name="info_last_name">Last Name*</string>
-    <string name="info_student_id">Student ID</string>
+    <string name="info_gender">Gender</string>
     <string name="info_email">E-mail</string>
-    <string name="info_batch_no">Batch</string>
+    <string name="info_age">Age</string>
     <string name="button_continue">Continue</string>
 
     <string name="info_department">Department*</string>

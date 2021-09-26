@@ -58,14 +58,12 @@ public class MyInfoAlertDialog extends Dialog{
         String userName = currentUser.getUserName();
         String userLocation = currentUser.getUserLocation();
         String userBloodGroup = currentUser.getUserBloodGroup();
-        String userDepartment = currentUser.getUserDepartment();
         String userMobile = currentUser.getUserMobile();
 
         if (!userName.equals("Empty")) {
             userNameTv.setText(userName);
             userLocationTv.setText("Location: " + userLocation);
             userBloodGroupTv.setText("Blood Group: " + userBloodGroup);
-            userDepartmentTv.setText("Department of " + userDepartment);
             userMobileTv.setText("Mobile: " + userMobile);
         } else {
             userNameTv.setText("No Data");

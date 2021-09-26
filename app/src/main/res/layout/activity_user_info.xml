@@ -87,7 +87,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -119,60 +119,7 @@
                     </Spinner>
                 </FrameLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
-                android:elevation="@dimen/user_info_box_elevation">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/info_batch_no"
-                    style="@style/user_info_guide_text"
-                    android:layout_gravity="center_vertical"/>
-
-                <EditText
-                    android:id="@+id/batch_no_et"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    style="@style/info_box_style"
-                    android:inputType="number"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
-                android:elevation="@dimen/user_info_box_elevation">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/info_student_id"
-                    style="@style/user_info_guide_text"
-                    android:layout_gravity="center_vertical"/>
-
-                <EditText
-                    android:id="@+id/student_id_et"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    style="@style/info_box_style"/>
-
-            </LinearLayout>
+            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -266,6 +213,59 @@
                         android:textAlignment="center">
                     </Spinner>
                 </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp"
+                android:weightSum="3"
+                android:background="@drawable/login_box_shape"
+                android:elevation="@dimen/user_info_box_elevation">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_age"
+                    style="@style/user_info_guide_text"
+                    android:layout_gravity="center_vertical"/>
+
+                <EditText
+                    android:id="@+id/age_et"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    style="@style/info_box_style"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp"
+                android:weightSum="3"
+                android:background="@drawable/login_box_shape"
+                android:elevation="@dimen/user_info_box_elevation">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info_gender"
+                    style="@style/user_info_guide_text"
+                    android:layout_gravity="center_vertical"/>
+
+                <EditText
+                    android:id="@+id/gender_et"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    style="@style/info_box_style"/>
 
             </LinearLayout>
 

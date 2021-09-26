@@ -79,7 +79,6 @@ public class DonorListAdapter extends RecyclerView.Adapter {
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView donorNameTv;
-        TextView donorDepartmentTv;
         TextView donorLocationTv;
         TextView donorMobileTv;
 
@@ -90,7 +89,6 @@ public class DonorListAdapter extends RecyclerView.Adapter {
             super(itemView);
 
             donorNameTv = itemView.findViewById(R.id.donor_name_tv);
-            donorDepartmentTv = itemView.findViewById(R.id.donor_department_tv);
             donorLocationTv = itemView.findViewById(R.id.donor_location_tv);
             donorMobileTv = itemView.findViewById(R.id.donor_mobile_tv);
 

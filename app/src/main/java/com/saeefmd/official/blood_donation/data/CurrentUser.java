@@ -9,11 +9,14 @@ public class CurrentUser {
 
     private Context context;
 
+    private String userEmail;
+
     private String userName;
     private String userLocation;
     private String userBloodGroup;
-    private String userDepartment;
     private String userMobile;
+    private String userAge;
+    private String userGender;
 
     public CurrentUser(Context context) {
         this.context = context;
@@ -25,8 +28,10 @@ public class CurrentUser {
         userName = mSharedPref.getString(Variables.CURRENT_USER_NAME, "Empty");
         userLocation = mSharedPref.getString(Variables.CURRENT_USER_LOCATION, "Empty");
         userBloodGroup = mSharedPref.getString(Variables.CURRENT_USER_BLOOD_GROUP, "Empty");
-        userDepartment = mSharedPref.getString(Variables.CURRENT_USER_DEPARTMENT, "Empty");
         userMobile = mSharedPref.getString(Variables.CURRENT_USER_MOBILE, "Empty");
+        userAge = mSharedPref.getString(Variables.CURRENT_USER_AGE, "Empty");
+        userGender = mSharedPref.getString(Variables.CURRENT_USER_GENDER, "Empty");
+        userEmail = mSharedPref.getString(Variables.CURRENT_USER_EMAIL, "Empty");
     }
 
     public String getUserName() {
@@ -53,19 +58,35 @@ public class CurrentUser {
         this.userBloodGroup = userBloodGroup;
     }
 
-    public String getUserDepartment() {
-        return userDepartment;
-    }
-
-    public void setUserDepartment(String userDepartment) {
-        this.userDepartment = userDepartment;
-    }
-
     public String getUserMobile() {
         return userMobile;
     }
 
     public void setUserMobile(String userMobile) {
         this.userMobile = userMobile;
+    }
+
+    public String getUserAge() {
+        return userAge;
+    }
+
+    public void setUserAge(String userAge) {
+        this.userAge = userAge;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }
