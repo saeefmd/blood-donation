@@ -30,7 +30,15 @@ public class LauncherActivity extends Activity {
             @Override
             public void run() {
 
-                if (firstTimeFlag && !userSignedIn) {
+                /*Intent intent = new Intent(LauncherActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                finish();*/
+
+                Intent intent = new Intent(LauncherActivity.this, UserInfoActivity.class);
+                startActivity(intent);
+                finish();
+
+                /*if (firstTimeFlag && !userSignedIn) {
 
                     Intent intent = new Intent(LauncherActivity.this, LogInActivity.class);
                     startActivity(intent);
@@ -48,7 +56,7 @@ public class LauncherActivity extends Activity {
                     startActivity(intent);
                     finish();
 
-                }
+                }*/
             }
         }, 1000);
 

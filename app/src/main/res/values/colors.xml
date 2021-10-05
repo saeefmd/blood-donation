@@ -11,6 +11,8 @@
 
     <color name="background_color">#FFFFFF</color>
 
+    <color name="color_black">#000000</color>
+
     <!--<color name="baseColor">#9974bf</color>
     <color name="upperColor">#8157b8</color>
     <color name="backgroundColor">#dcd0e5</color>-->

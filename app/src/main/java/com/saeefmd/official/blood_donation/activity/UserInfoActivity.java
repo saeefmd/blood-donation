@@ -9,12 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.saeefmd.official.blood_donation.R;
 import com.saeefmd.official.blood_donation.utilities.ConfirmUserInfoDialog;
+import com.saeefmd.official.blood_donation.utilities.DatePickerDialog;
 import com.saeefmd.official.blood_donation.utilities.WaitAlertDialog;
 
 public class UserInfoActivity extends AppCompatActivity {
@@ -37,6 +39,8 @@ public class UserInfoActivity extends AppCompatActivity {
     private EditText mobileEt;
     private EditText genderEt;
     private EditText ageEt;
+
+    private TextView lastDonateDateTv;
 
     private Button continueBt;
 
@@ -105,6 +109,14 @@ public class UserInfoActivity extends AppCompatActivity {
 
             }
         });
+
+        lastDonateDateTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(UserInfoActivity.this);
+                datePickerDialog.show();
+            }
+        });
     }
 
     private void initViews() {
@@ -116,6 +128,7 @@ public class UserInfoActivity extends AppCompatActivity {
         mobileEt = findViewById(R.id.mobile_et);
         genderEt = findViewById(R.id.gender_et);
         ageEt = findViewById(R.id.age_et);
+        lastDonateDateTv = findViewById(R.id.last_donate_date_tv);
 
         continueBt = findViewById(R.id.user_info_continue_bt);
     }

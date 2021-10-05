@@ -23,19 +23,17 @@ import com.saeefmd.official.blood_donation.R;
 import com.saeefmd.official.blood_donation.utilities.AboutDialog;
 import com.saeefmd.official.blood_donation.utilities.DeveloperInfoDialog;
 import com.saeefmd.official.blood_donation.utilities.MyInfoAlertDialog;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.Random;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private Spinner bloodGroupsSpinner;
-    private Spinner locationsSpinner;
+    private SearchableSpinner bloodGroupsSpinner;
+    private SearchableSpinner locationsSpinner;
 
     private String requiredBlood;
     private String preferredLocation;
-
-    private TextView quoteTv;
-    private TextView authorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +46,6 @@ public class ProfileActivity extends AppCompatActivity {
         setSpinners();
 
         FloatingActionButton searchFab = findViewById(R.id.profile_search_fab);
-
-        quoteTv = findViewById(R.id.quote_tv);
-        authorTv = findViewById(R.id.quote_author_tv);
-
-        setQuote();
 
         searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,25 +82,13 @@ public class ProfileActivity extends AppCompatActivity {
                 R.array.array_blood_groups, android.R.layout.simple_spinner_item);
         bloodGroupsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodGroupsSpinner.setAdapter(bloodGroupsAdapter);
+        bloodGroupsSpinner.setTitle("Select Blood Group");
 
         ArrayAdapter<CharSequence> locationsAdapter = ArrayAdapter.createFromResource(ProfileActivity.this,
                 R.array.array_locations, android.R.layout.simple_spinner_item);
         locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationsSpinner.setAdapter(locationsAdapter);
-    }
-
-    private void setQuote() {
-
-        String[] quotes = getResources().getStringArray(R.array.quotes_array);
-        String[] authors = getResources().getStringArray(R.array.authors_array);
-
-        int quotesCount = quotes.length;
-
-        Random random = new Random();
-        int randomValue = random.nextInt(quotesCount);
-
-        quoteTv.setText(quotes[randomValue]);
-        authorTv.setText(authors[randomValue]);
+        locationsSpinner.setTitle("Select Location");
     }
 
     @Override

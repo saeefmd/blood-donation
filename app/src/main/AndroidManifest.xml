@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/blood_splash"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:allowBackup">
         <activity android:name=".activity.HelpActivity"
             android:label="@string/help_activity_label"></activity>
         <activity android:name=".activity.LauncherActivity">

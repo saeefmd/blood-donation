@@ -17,7 +17,7 @@ import com.saeefmd.official.blood_donation.R;
 
 import java.util.List;
 
-public class DonorListAdapter extends RecyclerView.Adapter {
+public class DonorListAdapter extends RecyclerView.Adapter<DonorListAdapter.MyViewHolder> {
 
     private List<DonorModel> donorModelList;
     private Context context;
@@ -29,7 +29,7 @@ public class DonorListAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.list_item_donors, parent, false);
@@ -38,11 +38,11 @@ public class DonorListAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int position) {
 
-        ((MyViewHolder) viewHolder).donorNameTv.setText(donorModelList.get(position).getDonorData().getName());
-        ((MyViewHolder) viewHolder).donorLocationTv.setText(donorModelList.get(position).getDonorData().getLocation());
-        ((MyViewHolder) viewHolder).donorMobileTv.setText(donorModelList.get(position).getDonorData().getMobile());
+        viewHolder.donorNameTv.setText(donorModelList.get(position).getDonorData().getName());
+        viewHolder.donorLocationTv.setText(donorModelList.get(position).getDonorData().getLocation());
+        viewHolder.donorMobileTv.setText(donorModelList.get(position).getDonorData().getMobile());
 
         final String donorMobile = donorModelList.get(position).getDonorData().getMobile();
         final String donorName = donorModelList.get(position).getDonorData().getName();
@@ -51,7 +51,7 @@ public class DonorListAdapter extends RecyclerView.Adapter {
         final String messageBody = "Hello " + donorName + ", I am badly in need of " + donorBloodGroup + " blood near your location. "
                 + "If you can donate blood then please contact as soon as possible. Thank You";
 
-        ((MyViewHolder) viewHolder).callBt.setOnClickListener(new View.OnClickListener() {
+        viewHolder.callBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -59,7 +59,7 @@ public class DonorListAdapter extends RecyclerView.Adapter {
             }
         });
 
-        ((MyViewHolder) viewHolder).messageBt.setOnClickListener(new View.OnClickListener() {
+        viewHolder.messageBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

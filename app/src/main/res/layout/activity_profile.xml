@@ -8,38 +8,6 @@
     android:background="#FFF"
     tools:context=".activity.ProfileActivity">
 
-    <RelativeLayout
-        android:id="@+id/quotes_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:padding="10dp"
-        android:background="@drawable/quote_view_border">
-
-        <TextView
-            android:id="@+id/quote_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:textSize="14sp"
-            android:textColor="@color/quote_color"/>
-
-        <TextView
-            android:id="@+id/quote_author_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/quote_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            android:textColor="@color/quote_color"/>
-
-    </RelativeLayout>
-
     <FrameLayout
         android:id="@+id/profile_below_bar"
         android:layout_width="match_parent"
@@ -90,18 +58,79 @@
 
     </FrameLayout>
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/profile_below_bar"
-        android:layout_below="@id/quotes_view"
         android:weightSum="3"
         android:orientation="vertical"
-        android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image_view"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_alignParentEnd="true"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/colorAccent"
+                    android:layout_margin="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_toStartOf="@id/profile_image_view">
+
+                    <TextView
+                        android:id="@+id/profile_name_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Saeef MD Zulker Naeen"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/profile_location_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Savar"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:id="@+id/profile_blood_group_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        tools:text="Blood Group: O+"/>
+
+                    <TextView
+                        android:id="@+id/profile_last_donate_date_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        tools:text="Last Donated: 01-10-2021"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_weight="1"
@@ -114,7 +143,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:gravity="center"
                 android:padding="5dp">
 
@@ -127,14 +156,22 @@
                     android:layout_marginBottom="10dp"
                     android:textSize="16sp"/>
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/profile_spinner_blood_groups"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/spinner_style"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"/>
+
+                <!--<Spinner
                     android:id="@+id/profile_spinner_blood_groups"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     style="@style/spinner_style"
                     android:textAlignment="center"
                     android:gravity="center_horizontal">
-                </Spinner>
+                </Spinner>-->
 
             </LinearLayout>
 
@@ -166,53 +203,14 @@
                     android:layout_gravity="center_horizontal"
                     android:textSize="16sp"/>
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/profile_spinner_locations"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/spinner_style"
                     android:textAlignment="center"
                     android:gravity="center_horizontal">
-                </Spinner>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/login_box_shape"
-            android:layout_margin="5dp"
-            android:elevation="@dimen/login_box_elevation">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_departments"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_horizontal"
-                    style="@style/user_info_guide_text"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="16sp"/>
-
-                <Spinner
-                    android:id="@+id/profile_spinner_departments"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    style="@style/spinner_style"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal">
-                </Spinner>
+                </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
 
             </LinearLayout>
 
