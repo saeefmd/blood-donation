@@ -40,8 +40,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
+                android:layout_marginTop="10dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:weightSum="4"
                 android:elevation="@dimen/user_info_box_elevation">
 
                 <TextView
@@ -55,8 +57,10 @@
                 <EditText
                     android:id="@+id/first_name_et"
                     android:layout_width="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/quote_view_border"
+                    android:textAlignment="center"
                     style="@style/info_box_style"/>
 
             </LinearLayout>
@@ -66,68 +70,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
-                android:elevation="@dimen/user_info_box_elevation">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/info_last_name"
-                    style="@style/user_info_guide_text"
-                    android:layout_gravity="center_vertical"/>
-
-                <EditText
-                    android:id="@+id/last_name_et"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    style="@style/info_box_style"/>
-
-            </LinearLayout>
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
-                android:elevation="@dimen/user_info_box_elevation">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/info_department"
-                    style="@style/user_info_guide_text"
-                    android:layout_gravity="center_vertical"/>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/login_box_shape"
-                    android:layout_height="wrap_content">
-
-                    <Spinner
-                        android:id="@+id/spinner_departments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/spinner_style"
-                        android:textAlignment="center">
-                    </Spinner>
-                </FrameLayout>
-
-            </LinearLayout>-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
+                android:weightSum="4"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:elevation="@dimen/user_info_box_elevation">
 
                 <TextView
@@ -141,8 +86,10 @@
                 <EditText
                     android:id="@+id/mobile_et"
                     android:layout_width="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:background="@drawable/quote_view_border"
                     style="@style/info_box_style"
                     android:inputType="phone"/>
 
@@ -153,8 +100,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
+                android:weightSum="4"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:elevation="@dimen/user_info_box_elevation">
 
                 <TextView
@@ -167,17 +115,17 @@
 
                 <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/login_box_shape"
+                    android:layout_weight="3"
+                    android:background="@drawable/quote_view_border"
                     android:layout_height="wrap_content">
 
-                    <Spinner
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/spinner_blood_groups"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/spinner_style"
                         android:textAlignment="center">
-                    </Spinner>
+                    </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
                 </FrameLayout>
 
             </LinearLayout>
@@ -187,8 +135,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
+                android:weightSum="4"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:elevation="@dimen/user_info_box_elevation">
 
                 <TextView
@@ -201,17 +150,17 @@
 
                 <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/login_box_shape"
+                    android:layout_weight="3"
+                    android:background="@drawable/quote_view_border"
                     android:layout_height="wrap_content">
 
-                    <Spinner
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/spinner_locations"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/spinner_style"
                         android:textAlignment="center">
-                    </Spinner>
+                    </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
                 </FrameLayout>
 
             </LinearLayout>
@@ -221,8 +170,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
+                android:weightSum="4"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:elevation="@dimen/user_info_box_elevation">
 
                 <TextView
@@ -236,8 +186,10 @@
                 <EditText
                     android:id="@+id/age_et"
                     android:layout_width="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:background="@drawable/quote_view_border"
                     style="@style/info_box_style"
                     android:inputType="number"/>
 
@@ -248,8 +200,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
+                android:weightSum="4"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:elevation="@dimen/user_info_box_elevation">
 
                 <TextView
@@ -260,12 +213,20 @@
                     style="@style/user_info_guide_text"
                     android:layout_gravity="center_vertical"/>
 
-                <EditText
-                    android:id="@+id/gender_et"
+                <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    style="@style/info_box_style"/>
+                    android:layout_weight="3"
+                    android:background="@drawable/quote_view_border"
+                    android:layout_height="wrap_content">
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/spinner_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/spinner_style"
+                        android:textAlignment="center">
+                    </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+                </FrameLayout>
 
             </LinearLayout>
 
@@ -274,8 +235,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
-                android:weightSum="3"
-                android:background="@drawable/login_box_shape"
+                android:weightSum="4"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:elevation="@dimen/user_info_box_elevation">
 
                 <TextView
@@ -289,10 +251,11 @@
                 <TextView
                     android:id="@+id/last_donate_date_tv"
                     android:layout_width="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    style="@style/info_box_style"
-                    android:saveEnabled="false"/>
+                    android:background="@drawable/quote_view_border"
+                    android:textAlignment="center"
+                    style="@style/info_box_style"/>
 
             </LinearLayout>
 

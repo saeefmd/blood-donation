@@ -18,14 +18,15 @@ import com.saeefmd.official.blood_donation.R;
 import com.saeefmd.official.blood_donation.utilities.ConfirmUserInfoDialog;
 import com.saeefmd.official.blood_donation.utilities.DatePickerDialog;
 import com.saeefmd.official.blood_donation.utilities.WaitAlertDialog;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 public class UserInfoActivity extends AppCompatActivity {
 
-    private Spinner bloodGroupsSpinner;
-    private Spinner locationsSpinner;
+    private SearchableSpinner bloodGroupsSpinner;
+    private SearchableSpinner locationsSpinner;
+    private SearchableSpinner genderSpinner;
 
     private String firstName;
-    private String lastName;
 
     private String userName;
     private String userLocation;
@@ -33,11 +34,10 @@ public class UserInfoActivity extends AppCompatActivity {
     private String userMobile;
     private String userAge;
     private String userGender;
+    private String lastDonateDate;
 
     private EditText firstNameEt;
-    private EditText lastNameEt;
     private EditText mobileEt;
-    private EditText genderEt;
     private EditText ageEt;
 
     private TextView lastDonateDateTv;
@@ -67,15 +67,17 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 firstName = firstNameEt.getText().toString().trim();
-                lastName = lastNameEt.getText().toString().trim();
 
-                userName = firstName + " " + lastName;
+                userName = firstName;
                 userMobile = mobileEt.getText().toString();
 
                 userBloodGroup = bloodGroupsSpinner.getSelectedItem().toString();
                 userLocation = locationsSpinner.getSelectedItem().toString();
+                userGender = genderSpinner.getSelectedItem().toString();
 
-                if (!userBloodGroup.equals("Select") && !userLocation.equals("Select")) {
+                userAge = ageEt.getText().toString().trim();
+
+                if (!userBloodGroup.equals("Select") && !userLocation.equals("Select") && !userGender.equals("Select")) {
 
                     String bloodGroupText = bloodGroupInText(userBloodGroup);
 
@@ -84,19 +86,10 @@ public class UserInfoActivity extends AppCompatActivity {
 
                     if (checkTextFields()) {
 
-                        //saveCurrentUser();
-
                         ConfirmUserInfoDialog confirmUserInfoDialog = new ConfirmUserInfoDialog(UserInfoActivity.this, userName,
-                                userLocation, userBloodGroup, userMobile, userGender, userAge);
+                                userLocation, userBloodGroup, userMobile, userGender, userAge, lastDonateDate);
                         confirmUserInfoDialog.show();
 
-                        //mWaitAlertDialog.show();
-
-                        /*assert bloodGroupText != null;
-                        firebaseReference = firebaseDatabase.getReference(bloodGroupText);*/
-
-                        //inputUser(userName, userDepartment, userStudentId, userBatch, userLocation,
-                                //userMobile, userBloodGroup);
                     } else {
 
                         Toast.makeText(UserInfoActivity.this, "Please provide required information", Toast.LENGTH_SHORT).show();
@@ -113,7 +106,13 @@ public class UserInfoActivity extends AppCompatActivity {
         lastDonateDateTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(UserInfoActivity.this);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(UserInfoActivity.this, new DatePickerDialog.OnDateSelected() {
+                    @Override
+                    public void onSaveClicked(String date) {
+                        lastDonateDate = date;
+                        lastDonateDateTv.setText(date);
+                    }
+                });
                 datePickerDialog.show();
             }
         });
@@ -122,11 +121,10 @@ public class UserInfoActivity extends AppCompatActivity {
     private void initViews() {
         bloodGroupsSpinner = findViewById(R.id.spinner_blood_groups);
         locationsSpinner = findViewById(R.id.spinner_locations);
+        genderSpinner = findViewById(R.id.spinner_gender);
 
         firstNameEt = findViewById(R.id.first_name_et);
-        lastNameEt = findViewById(R.id.last_name_et);
         mobileEt = findViewById(R.id.mobile_et);
-        genderEt = findViewById(R.id.gender_et);
         ageEt = findViewById(R.id.age_et);
         lastDonateDateTv = findViewById(R.id.last_donate_date_tv);
 
@@ -169,6 +167,11 @@ public class UserInfoActivity extends AppCompatActivity {
                 R.array.array_locations, android.R.layout.simple_spinner_item);
         locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationsSpinner.setAdapter(locationsAdapter);
+
+        ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(UserInfoActivity.this,
+                R.array.array_gender, android.R.layout.simple_spinner_item);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSpinner.setAdapter(genderAdapter);
     }
 
     private boolean checkTextFields() {
@@ -177,15 +180,15 @@ public class UserInfoActivity extends AppCompatActivity {
             firstNameEt.setError("Empty");
         }
 
-        if (lastName.isEmpty()) {
-            lastNameEt.setError("Empty");
-        }
-
         if (userMobile.isEmpty()) {
             mobileEt.setError("Empty");
         }
 
-        if (!firstName.isEmpty() && !lastName.isEmpty() && !userMobile.isEmpty() &&
+        if (userAge.isEmpty()) {
+            ageEt.setError("Empty");
+        }
+
+        if (!firstName.isEmpty() && !userMobile.isEmpty() && !userGender.isEmpty() && !userAge.isEmpty() &&
                 !userBloodGroup.isEmpty() && !userLocation.isEmpty()) {
 
             return true;

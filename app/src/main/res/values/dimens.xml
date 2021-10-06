@@ -6,8 +6,8 @@
     <dimen name="login_box_elevation">8dp</dimen>
     <dimen name="search_box_elevation">4dp</dimen>
 
-    <dimen name="user_info_guide_text">14sp</dimen>
-    <dimen name="user_info_text">14sp</dimen>
+    <dimen name="user_info_guide_text">16sp</dimen>
+    <dimen name="user_info_text">16sp</dimen>
 
     <dimen name="general_dialog_height">400dp</dimen>
 

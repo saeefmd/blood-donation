@@ -19,6 +19,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.saeefmd.official.blood_donation.activity.ProfileActivity;
 import com.saeefmd.official.blood_donation.activity.UserInfoActivity;
 import com.saeefmd.official.blood_donation.data.Variables;
@@ -46,6 +51,9 @@ public class LogInFragment extends Fragment {
 
     private WaitAlertDialog mWaitAlertDialog;
 
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
+
     public LogInFragment() {
         // Required empty public constructor
     }
@@ -61,6 +69,8 @@ public class LogInFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         loginLayout = view.findViewById(R.id.login_layout);
         loginEmailEt = view.findViewById(R.id.login_email_et);
@@ -156,9 +166,28 @@ public class LogInFragment extends Fragment {
                                 editor.putString(Variables.CURRENT_USER_EMAIL, userMail);
                                 editor.apply();
 
-                                Intent intent = new Intent(getContext(), UserInfoActivity.class);
-                                startActivity(intent);
-                                getActivity().finish();
+                                databaseReference = firebaseDatabase.getReference("user_list");
+
+                                databaseReference.child(userMail).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            Intent intent = new Intent(getContext(), ProfileActivity.class);
+                                            startActivity(intent);
+                                            getActivity().finish();
+
+                                        } else {
+                                            Intent intent = new Intent(getContext(), UserInfoActivity.class);
+                                            startActivity(intent);
+                                            getActivity().finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
 
                             } else {
 

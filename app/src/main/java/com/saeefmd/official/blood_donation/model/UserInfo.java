@@ -10,12 +10,15 @@ public class UserInfo {
     private String gender;
     private String lastDonateDate;
 
-    public UserInfo(String name, String location, String mobile, String bloodGroup) {
+    public UserInfo(String name, String location, String mobile, String bloodGroup, String age, String gender, String lastDonateDate) {
 
         this.name = name;
         this.location = location;
         this.mobile = mobile;
         this.bloodGroup = bloodGroup;
+        this.age = age;
+        this.gender = gender;
+        this.lastDonateDate = lastDonateDate;
     }
 
     public String getName() {
@@ -48,5 +51,29 @@ public class UserInfo {
 
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getLastDonateDate() {
+        return lastDonateDate;
+    }
+
+    public void setLastDonateDate(String lastDonateDate) {
+        this.lastDonateDate = lastDonateDate;
     }
 }

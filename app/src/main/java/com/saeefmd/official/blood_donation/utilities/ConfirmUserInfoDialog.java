@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.saeefmd.official.blood_donation.activity.ProfileActivity;
+import com.saeefmd.official.blood_donation.data.CurrentUser;
 import com.saeefmd.official.blood_donation.data.Variables;
 import com.saeefmd.official.blood_donation.model.UserInfo;
 import com.saeefmd.official.blood_donation.R;
@@ -29,7 +30,11 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ConfirmUserInfoDialog extends Dialog {
 
+    private static final String TAG = "ConfirmUserInfoDialog";
+
     private Context context;
+
+    private CurrentUser currentUser;
 
     private String userName;
     private String userLocation;
@@ -37,6 +42,8 @@ public class ConfirmUserInfoDialog extends Dialog {
     private String userMobile;
     private String userGender;
     private String userAge;
+    private String lastDonateDate;
+    private String userEmail;
 
     private TextView userNameTv;
     private TextView userLocationTv;
@@ -44,13 +51,15 @@ public class ConfirmUserInfoDialog extends Dialog {
     private TextView userMobileTv;
     private TextView userGenderTv;
     private TextView userAgeTv;
+    private TextView lastDonateDateTv;
 
     private DatabaseReference firebaseReference;
     private FirebaseDatabase firebaseDatabase;
 
     WaitAlertDialog mWaitAlertDialog;
 
-    public ConfirmUserInfoDialog(Context context,String userName, String userLocation, String userBloodGroup, String userMobile, String userGender, String userAge) {
+    public ConfirmUserInfoDialog(Context context,String userName, String userLocation, String userBloodGroup, String userMobile,
+                                 String userGender, String userAge, String lastDonateDate) {
         super(context);
         this.context = context;
         this.userName = userName;
@@ -59,6 +68,7 @@ public class ConfirmUserInfoDialog extends Dialog {
         this.userMobile = userMobile;
         this.userAge = userAge;
         this.userGender = userGender;
+        this.lastDonateDate = lastDonateDate;
     }
 
     @Override
@@ -67,12 +77,15 @@ public class ConfirmUserInfoDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_dialog_user_info);
 
+        currentUser = new CurrentUser(context);
+
         userNameTv = findViewById(R.id.my_info_name_tv);
         userLocationTv = findViewById(R.id.my_info_location_tv);
         userBloodGroupTv = findViewById(R.id.my_info_blood_group_tv);
         userMobileTv = findViewById(R.id.my_info_mobile_tv);
         userAgeTv = findViewById(R.id.my_info_age_tv);
         userGenderTv = findViewById(R.id.my_info_gender_tv);
+        lastDonateDateTv = findViewById(R.id.my_info_last_donate_tv);
 
         mWaitAlertDialog = new WaitAlertDialog(context);
 
@@ -108,19 +121,22 @@ public class ConfirmUserInfoDialog extends Dialog {
 
     private void setUserData() {
 
+        userEmail = currentUser.getUserEmail();
+
         userNameTv.setText(userName);
         userLocationTv.setText("Location: " + userLocation);
         userBloodGroupTv.setText("Blood Group: " + userBloodGroup);
         userMobileTv.setText("Mobile: " + userMobile);
         userGenderTv.setText("Gender: " + userGender);
         userAgeTv.setText("Age: " + userAge);
+        lastDonateDateTv.setText("Last Donate: " + lastDonateDate);
     }
 
     private void inputUser() {
 
-        UserInfo userInfo = new UserInfo(userName, userLocation, userMobile, userBloodGroup);
+        UserInfo userInfo = new UserInfo(userName, userLocation, userMobile, userBloodGroup, userAge, userGender, lastDonateDate);
 
-        firebaseReference.child(userMobile).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseReference.child(userEmail).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
@@ -135,9 +151,19 @@ public class ConfirmUserInfoDialog extends Dialog {
                     editor.putBoolean(Variables.FIRST_TIME_FLAG, false);
                     editor.apply();
 
-                    Intent intent = new Intent(context, ProfileActivity.class);
-                    context.startActivity(intent);
-                    ((Activity)context).finish();
+                    firebaseReference = firebaseDatabase.getReference("user_list");
+                    firebaseReference.setValue(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(context, ProfileActivity.class);
+                                context.startActivity(intent);
+                                ((Activity)context).finish();
+                            } else {
+                                Toast.makeText(context, "Something Wrong. PLease Try Again", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 } else {
                     mWaitAlertDialog.dismiss();
                     Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -183,17 +209,32 @@ public class ConfirmUserInfoDialog extends Dialog {
 
     private void subscribeToFcm(String bloodGroup) {
 
-        FirebaseMessaging.getInstance().subscribeToTopic(bloodGroup)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "Subscription Successful";
-                        if (!task.isSuccessful()) {
-                            msg = "Subscription Failed";
-                        }
-                        Log.d("TAG", msg);
-                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()) {
+                    Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                    return;
+                }
+
+                // Get new FCM registration token
+                String token = task.getResult();
+
+                FirebaseMessaging.getInstance().subscribeToTopic(bloodGroup)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                String msg = "Subscription Successful";
+                                if (!task.isSuccessful()) {
+                                    msg = "Subscription Failed";
+                                }
+                                Log.d("TAG", msg);
+                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                Log.d("FCM Token: ", token);
+            }
+        });
     }
 }

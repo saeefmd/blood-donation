@@ -82,13 +82,11 @@ public class ProfileActivity extends AppCompatActivity {
                 R.array.array_blood_groups, android.R.layout.simple_spinner_item);
         bloodGroupsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodGroupsSpinner.setAdapter(bloodGroupsAdapter);
-        bloodGroupsSpinner.setTitle("Select Blood Group");
 
         ArrayAdapter<CharSequence> locationsAdapter = ArrayAdapter.createFromResource(ProfileActivity.this,
                 R.array.array_locations, android.R.layout.simple_spinner_item);
         locationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationsSpinner.setAdapter(locationsAdapter);
-        locationsSpinner.setTitle("Select Location");
     }
 
     @Override

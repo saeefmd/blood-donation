@@ -84,6 +84,14 @@
                 android:textColor="@color/quote_color"
                 android:layout_margin="2dp"/>
 
+            <TextView
+                android:id="@+id/my_info_last_donate_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/quote_color"
+                android:layout_margin="2dp"/>
+
         </LinearLayout>
 
     </ScrollView>

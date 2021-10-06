@@ -17,6 +17,7 @@ public class CurrentUser {
     private String userMobile;
     private String userAge;
     private String userGender;
+    private String lastDonateDate;
 
     public CurrentUser(Context context) {
         this.context = context;
@@ -32,6 +33,7 @@ public class CurrentUser {
         userAge = mSharedPref.getString(Variables.CURRENT_USER_AGE, "Empty");
         userGender = mSharedPref.getString(Variables.CURRENT_USER_GENDER, "Empty");
         userEmail = mSharedPref.getString(Variables.CURRENT_USER_EMAIL, "Empty");
+        lastDonateDate = mSharedPref.getString(Variables.CURRENT_USER_LAST_DONATE_DATE, "Empty");
     }
 
     public String getUserName() {
@@ -88,5 +90,13 @@ public class CurrentUser {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getLastDonateDate() {
+        return lastDonateDate;
+    }
+
+    public void setLastDonateDate(String lastDonateDate) {
+        this.lastDonateDate = lastDonateDate;
     }
 }

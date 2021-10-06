@@ -30,33 +30,14 @@ public class LauncherActivity extends Activity {
             @Override
             public void run() {
 
-                /*Intent intent = new Intent(LauncherActivity.this, ProfileActivity.class);
-                startActivity(intent);
-                finish();*/
-
-                Intent intent = new Intent(LauncherActivity.this, UserInfoActivity.class);
+                Intent intent;
+                if (firstTimeFlag) {
+                    intent = new Intent(LauncherActivity.this, LogInActivity.class);
+                } else {
+                    intent = new Intent(LauncherActivity.this, ProfileActivity.class);
+                }
                 startActivity(intent);
                 finish();
-
-                /*if (firstTimeFlag && !userSignedIn) {
-
-                    Intent intent = new Intent(LauncherActivity.this, LogInActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                } else if (firstTimeFlag && userSignedIn) {
-
-                    Intent intent = new Intent(LauncherActivity.this, UserInfoActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                } else {
-
-                    Intent intent = new Intent(LauncherActivity.this, ProfileActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                }*/
             }
         }, 1000);
 
