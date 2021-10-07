@@ -34,8 +34,6 @@ public class ConfirmUserInfoDialog extends Dialog {
 
     private Context context;
 
-    private CurrentUser currentUser;
-
     private String userName;
     private String userLocation;
     private String userBloodGroup;
@@ -76,8 +74,6 @@ public class ConfirmUserInfoDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_dialog_user_info);
-
-        currentUser = new CurrentUser(context);
 
         userNameTv = findViewById(R.id.my_info_name_tv);
         userLocationTv = findViewById(R.id.my_info_location_tv);
@@ -121,7 +117,7 @@ public class ConfirmUserInfoDialog extends Dialog {
 
     private void setUserData() {
 
-        userEmail = currentUser.getUserEmail();
+        userEmail = CurrentUser.getUserEmail(context);
 
         userNameTv.setText(userName);
         userLocationTv.setText("Location: " + userLocation);
@@ -136,51 +132,39 @@ public class ConfirmUserInfoDialog extends Dialog {
 
         UserInfo userInfo = new UserInfo(userName, userLocation, userMobile, userBloodGroup, userAge, userGender, lastDonateDate);
 
-        firebaseReference.child(userEmail).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
+        try {
+            firebaseReference.child(userMobile).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
 
-                if (task.isSuccessful()) {
+                    if (task.isSuccessful()) {
 
-                    mWaitAlertDialog.dismiss();
-                    Toast.makeText(context, "Your Information Stored Successfully. Thank You", Toast.LENGTH_SHORT).show();
+                        mWaitAlertDialog.dismiss();
+                        Toast.makeText(context, "Your Information Stored Successfully. Thank You", Toast.LENGTH_SHORT).show();
 
-                    subscribeToFcm(userBloodGroup);
+                        //subscribeToFcm(userBloodGroup);
 
-                    SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
-                    editor.putBoolean(Variables.FIRST_TIME_FLAG, false);
-                    editor.apply();
+                        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+                        editor.putBoolean(Variables.FIRST_TIME_FLAG, false);
+                        editor.apply();
 
-                    firebaseReference = firebaseDatabase.getReference("user_list");
-                    firebaseReference.setValue(userEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Intent intent = new Intent(context, ProfileActivity.class);
-                                context.startActivity(intent);
-                                ((Activity)context).finish();
-                            } else {
-                                Toast.makeText(context, "Something Wrong. PLease Try Again", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                } else {
-                    mWaitAlertDialog.dismiss();
-                    Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, ProfileActivity.class);
+                        context.startActivity(intent);
+                        ((Activity)context).finish();
+                    } else {
+                        mWaitAlertDialog.dismiss();
+                        Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            Log.d(TAG, e.toString());
+        }
     }
 
     private void saveCurrentUser() {
-        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
-        editor.putString(Variables.CURRENT_USER_NAME, userName);
-        editor.putString(Variables.CURRENT_USER_BLOOD_GROUP, userBloodGroup);
-        editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
-        editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);
-        editor.putString(Variables.CURRENT_USER_AGE, userAge);
-        editor.putString(Variables.CURRENT_USER_GENDER, userGender);
-        editor.apply();
+        CurrentUser.setCurrentUser(context, userName, userLocation, userBloodGroup, userMobile, userAge, userGender,
+                userEmail, lastDonateDate);
     }
 
     private String bloodGroupInText(String group) {
@@ -228,7 +212,7 @@ public class ConfirmUserInfoDialog extends Dialog {
                                 if (!task.isSuccessful()) {
                                     msg = "Subscription Failed";
                                 }
-                                Log.d("TAG", msg);
+                                Log.d(TAG, msg);
                                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
                             }
                         });

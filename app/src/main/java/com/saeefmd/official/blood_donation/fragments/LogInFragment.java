@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.saeefmd.official.blood_donation.activity.ProfileActivity;
 import com.saeefmd.official.blood_donation.activity.UserInfoActivity;
+import com.saeefmd.official.blood_donation.data.CurrentUser;
 import com.saeefmd.official.blood_donation.data.Variables;
 import com.saeefmd.official.blood_donation.R;
 import com.saeefmd.official.blood_donation.utilities.NetworkCheck;
@@ -38,6 +39,8 @@ import androidx.fragment.app.Fragment;
 import static android.content.Context.MODE_PRIVATE;
 
 public class LogInFragment extends Fragment {
+
+    private static final String TAG = "LogInFragment";
 
     private RelativeLayout loginLayout;
 
@@ -79,8 +82,6 @@ public class LogInFragment extends Fragment {
         TextView loginSignUpTv = view.findViewById(R.id.login_sign_up_tv);
         TextView forgotPasswordTv = view.findViewById(R.id.forgot_password_tv);
 
-        Button guestLogInBt = view.findViewById(R.id.guest_login_bt);
-
         mWaitAlertDialog = new WaitAlertDialog(getContext());
 
         loginBt.setOnClickListener(new View.OnClickListener() {
@@ -120,16 +121,6 @@ public class LogInFragment extends Fragment {
                 switchToSignUpFragment();
             }
         });
-
-        guestLogInBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getContext(), ProfileActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
     }
 
     private void switchToSignUpFragment() {
@@ -146,64 +137,43 @@ public class LogInFragment extends Fragment {
 
     private void signIn(String mail, String password) {
 
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(mail, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+        try {
+            mAuth.signInWithEmailAndPassword(mail, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                            mWaitAlertDialog.dismiss();
+                                mWaitAlertDialog.dismiss();
 
-                            if (mAuth.getCurrentUser().isEmailVerified()) {
+                                if (mAuth.getCurrentUser().isEmailVerified()) {
 
-                                // Sign in success, update UI with the signed-in user's information
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                Log.i("Name: ", user.getEmail());
+                                    // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Log.i("Name: ", user.getEmail());
 
-                                SharedPreferences.Editor editor = getContext().getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
-                                editor.putBoolean(Variables.USER_SIGNED_IN, true);
-                                editor.putString(Variables.CURRENT_USER_EMAIL, userMail);
-                                editor.apply();
+                                    CurrentUser.setUserEmail(getContext(), mail);
 
-                                databaseReference = firebaseDatabase.getReference("user_list");
+                                    Intent intent = new Intent(getContext(), UserInfoActivity.class);
+                                    startActivity(intent);
+                                    getActivity().finish();
 
-                                databaseReference.child(userMail).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        if (snapshot.exists()) {
-                                            Intent intent = new Intent(getContext(), ProfileActivity.class);
-                                            startActivity(intent);
-                                            getActivity().finish();
+                                } else {
 
-                                        } else {
-                                            Intent intent = new Intent(getContext(), UserInfoActivity.class);
-                                            startActivity(intent);
-                                            getActivity().finish();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+                                    Toast.makeText(getContext(), "Please verify your email", Toast.LENGTH_SHORT).show();
+                                }
 
                             } else {
 
-                                Toast.makeText(getContext(), "Please verify your email", Toast.LENGTH_SHORT).show();
+                                mWaitAlertDialog.dismiss();
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
-
-
-                        } else {
-
-                            mWaitAlertDialog.dismiss();
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
-        // [END sign_in_with_email]
+                    });
+        } catch (Exception e) {
+            Log.d(TAG, e.toString());
+        }
     }
 
     private boolean checkTextFields() {

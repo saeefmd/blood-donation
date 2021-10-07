@@ -69,7 +69,10 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -97,6 +100,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="Saeef MD Zulker Naeen"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/profile_mobile_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Mobile: 01773600454"
                         android:textSize="18sp"
                         android:textColor="@color/colorAccent"
                         android:textStyle="bold"/>
@@ -133,84 +145,72 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/login_box_shape"
-            android:layout_margin="5dp"
-            android:elevation="@dimen/login_box_elevation">
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="5dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_blood_group"
-                    style="@style/user_info_guide_text"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:textSize="16sp"/>
-
-                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                    android:id="@+id/profile_spinner_blood_groups"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/spinner_style"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal"/>
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:padding="5dp">
 
-                <!--<Spinner
-                    android:id="@+id/profile_spinner_blood_groups"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    style="@style/spinner_style"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal">
-                </Spinner>-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_blood_group"
+                        style="@style/user_info_guide_text"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="16sp"/>
 
-            </LinearLayout>
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/profile_spinner_blood_groups"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/spinner_style"
+                        android:textAlignment="center"
 
-        </androidx.cardview.widget.CardView>
+                        android:gravity="center_horizontal"/>
 
-        <androidx.cardview.widget.CardView
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/login_box_shape"
-            android:layout_margin="5dp"
-            android:elevation="@dimen/login_box_elevation">
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_location"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_horizontal"
-                    style="@style/user_info_guide_text"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="16sp"/>
-
-                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                    android:id="@+id/profile_spinner_locations"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/spinner_style"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal">
-                </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/search_location"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center_horizontal"
+                        style="@style/user_info_guide_text"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="16sp"/>
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/profile_spinner_locations"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/spinner_style"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal">
+                    </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
+                </LinearLayout>
 
             </LinearLayout>
 

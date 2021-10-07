@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:text="@string/button_continue"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/color_white"
         android:textAllCaps="false"
         android:background="@drawable/button_ripple"
         android:elevation="@dimen/button_elevation"

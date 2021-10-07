@@ -7,96 +7,109 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class CurrentUser {
 
-    private Context context;
+    private static SharedPreferences mSharedPref;
 
-    private String userEmail;
+    public static void setCurrentUser(Context context, String userName, String userLocation, String userBloodGroup,
+                                      String userMobile, String userAge, String userGender, String userEmail, String lastDonateDate) {
 
-    private String userName;
-    private String userLocation;
-    private String userBloodGroup;
-    private String userMobile;
-    private String userAge;
-    private String userGender;
-    private String lastDonateDate;
-
-    public CurrentUser(Context context) {
-        this.context = context;
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_NAME, userName);
+        editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);
+        editor.putString(Variables.CURRENT_USER_BLOOD_GROUP, userBloodGroup);
+        editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
+        editor.putString(Variables.CURRENT_USER_AGE, userAge);
+        editor.putString(Variables.CURRENT_USER_GENDER, userGender);
+        editor.putString(Variables.CURRENT_USER_EMAIL, userEmail);
+        editor.putString(Variables.CURRENT_USER_LAST_DONATE_DATE, lastDonateDate);
+        editor.apply();
     }
 
-    public void getCurrentUser() {
-
-        SharedPreferences mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
-        userName = mSharedPref.getString(Variables.CURRENT_USER_NAME, "Empty");
-        userLocation = mSharedPref.getString(Variables.CURRENT_USER_LOCATION, "Empty");
-        userBloodGroup = mSharedPref.getString(Variables.CURRENT_USER_BLOOD_GROUP, "Empty");
-        userMobile = mSharedPref.getString(Variables.CURRENT_USER_MOBILE, "Empty");
-        userAge = mSharedPref.getString(Variables.CURRENT_USER_AGE, "Empty");
-        userGender = mSharedPref.getString(Variables.CURRENT_USER_GENDER, "Empty");
-        userEmail = mSharedPref.getString(Variables.CURRENT_USER_EMAIL, "Empty");
-        lastDonateDate = mSharedPref.getString(Variables.CURRENT_USER_LAST_DONATE_DATE, "Empty");
+    public static String getUserName(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getString(Variables.CURRENT_USER_NAME, "Empty");
     }
 
-    public String getUserName() {
-        return userName;
+    public static void setUserName(String userName, Context context) {
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_NAME, userName);
+        editor.apply();
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public static String getUserLocation(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getString(Variables.CURRENT_USER_LOCATION, "Empty");
     }
 
-    public String getUserLocation() {
-        return userLocation;
+    public static void setUserLocation(Context context, String userLocation) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_LOCATION, userLocation);
+        editor.apply();
     }
 
-    public void setUserLocation(String userLocation) {
-        this.userLocation = userLocation;
+    public static String getUserBloodGroup(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+       return mSharedPref.getString(Variables.CURRENT_USER_BLOOD_GROUP, "Empty");
     }
 
-    public String getUserBloodGroup() {
-        return userBloodGroup;
+    public static void setUserBloodGroup(Context context, String userBloodGroup) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_BLOOD_GROUP, userBloodGroup);
+        editor.apply();
     }
 
-    public void setUserBloodGroup(String userBloodGroup) {
-        this.userBloodGroup = userBloodGroup;
+    public static String getUserMobile(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getString(Variables.CURRENT_USER_MOBILE, "Empty");
     }
 
-    public String getUserMobile() {
-        return userMobile;
+    public static void setUserMobile(Context context ,String userMobile) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_MOBILE, userMobile);
+        editor.apply();
     }
 
-    public void setUserMobile(String userMobile) {
-        this.userMobile = userMobile;
+    public static String getUserAge(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getString(Variables.CURRENT_USER_AGE, "Empty");
     }
 
-    public String getUserAge() {
-        return userAge;
+    public static void setUserAge(Context context ,String userAge) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_AGE, userAge);
+        editor.apply();
     }
 
-    public void setUserAge(String userAge) {
-        this.userAge = userAge;
+    public static String getUserGender(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getString(Variables.CURRENT_USER_GENDER, "Empty");
     }
 
-    public String getUserGender() {
-        return userGender;
+    public static void setUserGender(Context context ,String userGender) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_GENDER, userGender);
+        editor.apply();
     }
 
-    public void setUserGender(String userGender) {
-        this.userGender = userGender;
+    public static String getUserEmail(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getString(Variables.CURRENT_USER_EMAIL, "Empty");
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public static void setUserEmail(Context context, String userEmail) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_EMAIL, userEmail);
+        editor.apply();
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public static String getLastDonateDate(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getString(Variables.CURRENT_USER_LAST_DONATE_DATE, "Empty");
     }
 
-    public String getLastDonateDate() {
-        return lastDonateDate;
-    }
-
-    public void setLastDonateDate(String lastDonateDate) {
-        this.lastDonateDate = lastDonateDate;
+    public void setLastDonateDate(Context context, String lastDonateDate) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putString(Variables.CURRENT_USER_LAST_DONATE_DATE, lastDonateDate);
+        editor.apply();
     }
 }

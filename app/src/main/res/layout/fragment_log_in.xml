@@ -72,7 +72,7 @@
             android:layout_marginTop="25dp"
             android:text="@string/log_in_bt"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/color_white"
             android:background="@drawable/button_ripple"
             android:elevation="@dimen/button_elevation"
             android:stateListAnimator="@animator/button_raise"/>
@@ -113,19 +113,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/guest_login_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:background="@drawable/quote_view_border"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="5dp"
-        android:text="@string/guest_login"
-        android:textSize="12sp"
-        android:textAllCaps="false"
-        android:textColor="@color/quote_color"/>
 
 </RelativeLayout>

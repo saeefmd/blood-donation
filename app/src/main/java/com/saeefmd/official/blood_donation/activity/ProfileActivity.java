@@ -1,5 +1,6 @@
 package com.saeefmd.official.blood_donation.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +20,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.saeefmd.official.blood_donation.R;
 import com.saeefmd.official.blood_donation.utilities.AboutDialog;
 import com.saeefmd.official.blood_donation.utilities.DeveloperInfoDialog;
@@ -28,6 +35,8 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import java.util.Random;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    private static final String TAG = "ProfileActivity";
 
     private SearchableSpinner bloodGroupsSpinner;
     private SearchableSpinner locationsSpinner;
@@ -44,6 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
         locationsSpinner = findViewById(R.id.profile_spinner_locations);
 
         setSpinners();
+
+        //getFcmToken();
 
         FloatingActionButton searchFab = findViewById(R.id.profile_search_fab);
 
@@ -74,6 +85,12 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void checkFirebaseAuth() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        Log.d(TAG, user.getEmail());
     }
 
     private void setSpinners() {
@@ -170,5 +187,46 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getFcmToken(String bloodGroup) {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        Log.d("FCM Token: ", token);
+
+                        subscribeToFcm(bloodGroup);
+
+                        // Log and toast
+                        /*String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d(TAG, msg);
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();*/
+                    }
+                });
+    }
+
+    private void subscribeToFcm(String topic) {
+        FirebaseMessaging.getInstance().subscribeToTopic(topic)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Topic Subscription Failed");
+                        }
+
+                        if (task.isComplete()) {
+                            Toast.makeText(ProfileActivity.this, "Subscription Successful", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
