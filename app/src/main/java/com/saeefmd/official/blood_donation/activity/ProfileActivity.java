@@ -140,7 +140,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         new AlertDialog.Builder(ProfileActivity.this)
                 .setTitle("No Internet")
-                .setMessage("You need to turn on the Internet. You can turn wifi from here or manually")
+                .setMessage("You need to turn on the Internet. You can turn wifi on from here or manually")
 
                 // Specifying a listener allows you to take an action before dismissing the dialog.
                 // The dialog is automatically dismissed when a dialog button is clicked.
