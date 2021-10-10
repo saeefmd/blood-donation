@@ -110,18 +110,23 @@ public class BloodResultActivity extends Activity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            Log.d(TAG, "Post Execute Triggered");
+
             progressBar.setVisibility(View.GONE);
 
             donorModelList = new ArrayList<>();
 
             try {
-
                 Gson gson = new Gson();
                 Type mapType = new TypeToken<Map<String, DonorData>>() {}.getType();
                 Map<String, DonorData> map = gson.fromJson(data, mapType);
 
+                Log.d(TAG, map.toString());
+
                 Set<Map.Entry<String, DonorData>> entrySet = map.entrySet();
                 Iterator iterator = entrySet.iterator();
+
+                Log.d(TAG, "Entry set size: " + entrySet.size());
 
                 for (int j = 0; j < entrySet.size(); j++) {
 
@@ -154,6 +159,7 @@ public class BloodResultActivity extends Activity {
                 }
             } catch (Exception e) {
 
+                Log.d(TAG, e.getMessage());
                 errorMessageLayout.setVisibility(View.VISIBLE);
             }
 

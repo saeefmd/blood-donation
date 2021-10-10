@@ -17,9 +17,6 @@ public class DonorData {
     @SerializedName("bloodGroup")
     @Expose
     private String bloodGroup;
-    @SerializedName("lastDonateDate")
-    @Expose
-    private long lastDonateDate;
     @SerializedName("age")
     @Expose
     private String age;
@@ -59,14 +56,6 @@ public class DonorData {
         this.name = name;
     }
 
-    public long getLastDonateDate() {
-        return lastDonateDate;
-    }
-
-    public void setLastDonateDate(long lastDonateDate) {
-        this.lastDonateDate = lastDonateDate;
-    }
-
     public String getAge() {
         return age;
     }
@@ -91,7 +80,7 @@ public class DonorData {
                 ", name='" + name + '\'' +
                 ", age='" + age + '\'' +
                 ", gender='" + gender + '\'' +
-                ", lastDonateDate='" + lastDonateDate +
+                ", lastDonateDate='" +
                 '}';
     }
 }
