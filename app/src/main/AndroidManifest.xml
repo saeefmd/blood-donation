@@ -18,8 +18,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-        <activity android:name=".activity.HelpActivity"
-            android:label="@string/help_activity_label"></activity>
+        <activity android:name=".activity.DonorRiskActivity"></activity>
+        <activity android:name=".activity.DonationChartActivity" />
+        <activity
+            android:name=".activity.HelpActivity"
+            android:label="@string/help_activity_label" />
         <activity android:name=".activity.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,12 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UserInfoActivity"
-            android:label="@string/userinfo_activity_label"/>
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:label="@string/userinfo_activity_label" />
         <activity android:name=".activity.BloodResultActivity" />
         <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.LogInActivity"
-            android:label="@string/login_activity_label"/>
+        <activity
+            android:name=".activity.LogInActivity"
+            android:label="@string/login_activity_label" />
 
         <service
             android:name=".fcm.MyFirebaseMessagingService"
@@ -41,7 +46,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -35,6 +36,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class BloodResultActivity extends Activity {
+
+    private static final String TAG = "BloodResultActivity";
 
     private String data;
 
@@ -81,7 +84,6 @@ public class BloodResultActivity extends Activity {
         }
     }
 
-
     private class ParseResult extends AsyncTask<Void, Void, Void>{
 
         @Override
@@ -89,6 +91,7 @@ public class BloodResultActivity extends Activity {
 
             try {
                 data = getData(Variables.BASE_URL + bloodGroupText +".json");
+                Log.d(TAG, data);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -126,9 +129,13 @@ public class BloodResultActivity extends Activity {
                         Map.Entry entry = (Map.Entry) iterator.next();
                         String key = entry.getKey().toString();
 
+                        Log.d(TAG, key);
+
                         System.out.println("Check: " + key);
 
                         DonorData donorEntry = map.get(key);
+
+                        Log.d(TAG, donorEntry.toString());
 
                         System.out.println("Check: " + donorEntry.toString());
 

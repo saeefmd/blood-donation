@@ -17,6 +17,7 @@ public class WaitAlertDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setCanceledOnTouchOutside(false);
         setContentView(R.layout.custom_dialog_wait);
     }
 }

@@ -16,8 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,12 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.saeefmd.official.blood_donation.R;
-import com.saeefmd.official.blood_donation.utilities.AboutDialog;
-import com.saeefmd.official.blood_donation.utilities.DeveloperInfoDialog;
 import com.saeefmd.official.blood_donation.utilities.MyInfoAlertDialog;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
-
-import java.util.Random;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -44,6 +39,9 @@ public class ProfileActivity extends AppCompatActivity {
     private String requiredBlood;
     private String preferredLocation;
 
+    private Button donationChartBt;
+    private Button donationFactorsBt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +49,25 @@ public class ProfileActivity extends AppCompatActivity {
 
         bloodGroupsSpinner = findViewById(R.id.profile_spinner_blood_groups);
         locationsSpinner = findViewById(R.id.profile_spinner_locations);
+
+        donationChartBt = findViewById(R.id.donation_chart_bt);
+        donationFactorsBt = findViewById(R.id.donor_factors_bt);
+
+        donationChartBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, DonationChartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        donationFactorsBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, DonorRiskActivity.class);
+                startActivity(intent);
+            }
+        });
 
         setSpinners();
 
@@ -176,13 +193,9 @@ public class ProfileActivity extends AppCompatActivity {
                 break;
 
             case R.id.menu_help_option:
-                AboutDialog aboutDialog = new AboutDialog(ProfileActivity.this);
-                aboutDialog.show();
                 break;
 
             case R.id.menu_contact_developer:
-                DeveloperInfoDialog developerInfoDialog = new DeveloperInfoDialog(ProfileActivity.this);
-                developerInfoDialog.show();
                 break;
         }
 

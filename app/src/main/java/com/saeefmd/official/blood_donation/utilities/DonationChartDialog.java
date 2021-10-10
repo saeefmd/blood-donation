@@ -9,11 +9,11 @@ import android.widget.Button;
 
 import com.saeefmd.official.blood_donation.R;
 
-public class DeveloperInfoDialog extends Dialog {
+public class DonationChartDialog extends Dialog {
 
     private Context context;
 
-    public DeveloperInfoDialog(Context context) {
+    public DonationChartDialog(Context context) {
         super(context);
 
         this.context = context;
@@ -23,15 +23,6 @@ public class DeveloperInfoDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.custom_dialog_developer_info);
-
-        Button okBt = findViewById(R.id.developer_info_ok_bt);
-
-        okBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        setContentView(R.layout.custom_dialog_donation_chart);
     }
 }
