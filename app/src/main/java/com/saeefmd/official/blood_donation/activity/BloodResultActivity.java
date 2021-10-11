@@ -75,7 +75,11 @@ public class BloodResultActivity extends Activity {
 
         bloodGroupText = bloodGroupInText(requiredBlood);
 
-        resultDescription.setText(requiredBlood + " Donors in " + preferredLocation);
+        if (preferredLocation.equals("Select")) {
+            resultDescription.setText(requiredBlood + " Donors in All of Dhaka");
+        } else {
+            resultDescription.setText(requiredBlood + " Donors in " + preferredLocation);
+        }
 
         try {
             new ParseResult().execute();
@@ -144,13 +148,22 @@ public class BloodResultActivity extends Activity {
 
                         System.out.println("Check: " + donorEntry.toString());
 
-                        if (donorEntry.getLocation().equals(preferredLocation)) {
-
+                        if (preferredLocation.equals("Select")) {
                             DonorModel donorModel = new DonorModel(key, donorEntry);
 
                             System.out.println("Check: " + donorModel.toString());
 
                             donorModelList.add(donorModel);
+
+                        } else  {
+
+                            if (donorEntry.getLocation().equals(preferredLocation)) {
+                                DonorModel donorModel = new DonorModel(key, donorEntry);
+
+                                System.out.println("Check: " + donorModel.toString());
+
+                                donorModelList.add(donorModel);
+                            }
                         }
 
                     } catch (NoSuchElementException e) {

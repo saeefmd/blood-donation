@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.saeefmd.official.blood_donation.R;
+import com.saeefmd.official.blood_donation.data.CurrentUser;
 import com.saeefmd.official.blood_donation.utilities.MyInfoAlertDialog;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
@@ -42,16 +44,20 @@ public class ProfileActivity extends AppCompatActivity {
     private Button donationChartBt;
     private Button donationFactorsBt;
 
+    private TextView profileNameTv;
+    private TextView profileLocationTv;
+    private TextView profileLastDonateDateTv;
+    private TextView profileBloodGroupTv;
+    private TextView profileMobileTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        bloodGroupsSpinner = findViewById(R.id.profile_spinner_blood_groups);
-        locationsSpinner = findViewById(R.id.profile_spinner_locations);
+        initViews();
 
-        donationChartBt = findViewById(R.id.donation_chart_bt);
-        donationFactorsBt = findViewById(R.id.donor_factors_bt);
+        setViews();
 
         donationChartBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +88,7 @@ public class ProfileActivity extends AppCompatActivity {
                 requiredBlood = bloodGroupsSpinner.getSelectedItem().toString();
                 preferredLocation = locationsSpinner.getSelectedItem().toString();
 
-                if (!requiredBlood.equals("Select") && !preferredLocation.equals("Select")) {
+                if (!requiredBlood.equals("Select")) {
 
                     if (isNetworkAvailable()) {
 
@@ -96,12 +102,34 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 } else {
 
-                    Toast.makeText(ProfileActivity.this, "Please select valid blood group and location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Please select valid blood group", Toast.LENGTH_SHORT).show();
                 }
 
 
             }
         });
+    }
+
+    private void setViews() {
+        profileNameTv.setText(CurrentUser.getUserName(this));
+        profileLocationTv.setText("Location: " + CurrentUser.getUserLocation(this));
+        profileLastDonateDateTv.setText("Last Donate: " + CurrentUser.getLastDonateDate(this));
+        profileBloodGroupTv.setText(CurrentUser.getUserBloodGroup(this));
+        profileMobileTv.setText("Mobile: " + CurrentUser.getUserMobile(this));
+    }
+
+    private void initViews() {
+        bloodGroupsSpinner = findViewById(R.id.profile_spinner_blood_groups);
+        locationsSpinner = findViewById(R.id.profile_spinner_locations);
+
+        donationChartBt = findViewById(R.id.donation_chart_bt);
+        donationFactorsBt = findViewById(R.id.donor_factors_bt);
+
+        profileBloodGroupTv = findViewById(R.id.profile_blood_group_text_view);
+        profileNameTv = findViewById(R.id.profile_name_text_view);
+        profileLastDonateDateTv = findViewById(R.id.profile_last_donate_date_text_view);
+        profileLocationTv = findViewById(R.id.profile_location_text_view);
+        profileMobileTv = findViewById(R.id.profile_mobile_text_view);
     }
 
     private void checkFirebaseAuth() {
