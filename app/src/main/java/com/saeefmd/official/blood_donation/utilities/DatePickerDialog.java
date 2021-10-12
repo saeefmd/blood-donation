@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 
 import com.saeefmd.official.blood_donation.R;
 
@@ -34,7 +35,7 @@ public class DatePickerDialog extends Dialog {
         setContentView(R.layout.custom_dialog_date_picker);
 
         DatePicker datePicker = findViewById(R.id.donate_date_picker);
-        Button saveBt = findViewById(R.id.date_picker_ok_bt);
+        ImageButton saveBt = findViewById(R.id.date_picker_ok_bt);
 
         saveBt.setOnClickListener(new View.OnClickListener() {
             @Override

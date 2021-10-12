@@ -112,4 +112,37 @@ public class CurrentUser {
         editor.putString(Variables.CURRENT_USER_LAST_DONATE_DATE, lastDonateDate);
         editor.apply();
     }
+
+    public static void setBloodGroupIndex(Context context, int index) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putInt(Variables.BLOOD_GROUP_INDEX, index);
+        editor.apply();
+    }
+
+    public static int getBloodGroupIndex(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getInt(Variables.BLOOD_GROUP_INDEX, 0);
+    }
+
+    public static void setLocationIndex(Context context, int index) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putInt(Variables.LOCATION_INDEX, index);
+        editor.apply();
+    }
+
+    public static int getLocationIndex(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getInt(Variables.LOCATION_INDEX, 0);
+    }
+
+    public static void setGenderIndex(Context context, int index) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE).edit();
+        editor.putInt(Variables.GENDER_INDEX, index);
+        editor.apply();
+    }
+
+    public static int getGenderIndex(Context context) {
+        mSharedPref = context.getSharedPreferences(Variables.SHARED_PREFERENCE_DB, MODE_PRIVATE);
+        return mSharedPref.getInt(Variables.GENDER_INDEX, 0);
+    }
 }

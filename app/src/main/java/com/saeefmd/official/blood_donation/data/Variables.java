@@ -16,6 +16,10 @@ public class Variables {
     public static final String CURRENT_USER_GENDER = "currentUserGender";
     public static final String CURRENT_USER_LAST_DONATE_DATE = "currentUserLastDonateDate";
 
+    public static final String BLOOD_GROUP_INDEX = "bloodGroupIndex";
+    public static final String LOCATION_INDEX = "locationIndex";
+    public static final String GENDER_INDEX = "genderIndex";
+
     public static final String BASE_URL = "https://miu-blood-donors.firebaseio.com/";
 
 }

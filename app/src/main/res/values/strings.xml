@@ -80,6 +80,7 @@
 
     <!-- Profile Activity -->
 
+    <string name="update_info">Update Info</string>
     <string name="my_info">My Info</string>
     <string name="search_direction_text">Please select your required Blood Group and preferred Location
                                         and then click on Search Button</string>

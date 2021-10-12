@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/my_info"
+            android:textColor="@color/color_white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAllCaps="true"/>
@@ -94,6 +95,7 @@
             android:layout_height="wrap_content"
             android:text="@string/my_info_ok_bt"
             android:textAllCaps="false"
+            android:textColor="@color/color_white"
             android:background="@drawable/button_ripple"
             android:layout_margin="10dp"/>
 

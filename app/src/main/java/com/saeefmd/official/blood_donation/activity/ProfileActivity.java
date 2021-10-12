@@ -215,15 +215,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
-            case R.id.menu_current_user_info:
-                MyInfoAlertDialog myInfoAlertDialog = new MyInfoAlertDialog(ProfileActivity.this);
-                myInfoAlertDialog.show();
-                break;
-
-            case R.id.menu_help_option:
-                break;
-
-            case R.id.menu_contact_developer:
+            case R.id.menu_update_info:
+                Intent intent = new Intent(ProfileActivity.this, UserInfoActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
 

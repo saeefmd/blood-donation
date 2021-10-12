@@ -2,6 +2,7 @@ package com.saeefmd.official.blood_donation.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.saeefmd.official.blood_donation.R;
+import com.saeefmd.official.blood_donation.data.CurrentUser;
 import com.saeefmd.official.blood_donation.utilities.ConfirmUserInfoDialog;
 import com.saeefmd.official.blood_donation.utilities.DatePickerDialog;
 import com.saeefmd.official.blood_donation.utilities.WaitAlertDialog;
@@ -61,6 +63,8 @@ public class UserInfoActivity extends AppCompatActivity {
         mWaitAlertDialog = new WaitAlertDialog(UserInfoActivity.this);
 
         setSpinners();
+
+        setViews();
 
         continueBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +120,27 @@ public class UserInfoActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(UserInfoActivity.this, ProfileActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void setViews() {
+        if (!CurrentUser.getUserName(this).equals("Empty")) {
+            firstNameEt.setText(CurrentUser.getUserName(this));
+            mobileEt.setText(CurrentUser.getUserMobile(this));
+            ageEt.setText(CurrentUser.getUserAge(this));
+            lastDonateDateTv.setText(CurrentUser.getLastDonateDate(this));
+
+            bloodGroupsSpinner.setTitle(CurrentUser.getUserBloodGroup(this));
+            bloodGroupsSpinner.setEnabled(false);
+        }
     }
 
     private void initViews() {

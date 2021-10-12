@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/are_u_sure"
+            android:textColor="@color/color_white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAllCaps="true"/>
@@ -109,6 +110,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/my_info_cancel_bt"
+            android:textColor="@color/color_white"
             android:textAllCaps="false"
             android:background="@drawable/button_ripple"
             android:layout_margin="10dp"/>
@@ -120,6 +122,7 @@
             android:layout_height="wrap_content"
             android:text="@string/my_info_save_bt"
             android:textAllCaps="false"
+            android:textColor="@color/color_white"
             android:background="@drawable/button_ripple"
             android:layout_margin="10dp"/>
 
