@@ -7,9 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".activity.DonorRiskActivity">
 
-    <com.github.barteksc.pdfviewer.PDFView
+    <WebView
+        android:id="@+id/donor_factors_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!--<com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/donor_risk_pdf_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" />-->
 
 </RelativeLayout>

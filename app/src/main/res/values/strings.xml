@@ -215,5 +215,7 @@
     <string name="developer_mail">E-mail: saeefmd.1435@gmail.com</string>
     <string name="developer_designation">Android Developer</string>
     <string name="developer_company">Mindscape Limited</string>
+    <string name="donation_chart_button">Donation Chart</string>
+    <string name="donation_factors_button">Donation factors</string>
 
 </resources>

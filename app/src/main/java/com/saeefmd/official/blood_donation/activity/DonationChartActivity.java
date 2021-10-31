@@ -11,6 +11,7 @@ import com.saeefmd.official.blood_donation.adapter.DonationChartAdapter;
 import com.saeefmd.official.blood_donation.model.DonationChartModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DonationChartActivity extends AppCompatActivity {
@@ -33,16 +34,25 @@ public class DonationChartActivity extends AppCompatActivity {
 
     private void loadChartData() {
 
-        donationChartModelList = new ArrayList<>();
+        donationChartModelList = new ArrayList<>(Arrays.asList(
+                new DonationChartModel("A+", "AB+, A+", "O+, O-, A+, A-"),
+                new DonationChartModel("A-", "AB+, AB-, A+, A-", "O-, A-"),
+                new DonationChartModel("B+", "AB+, B+", "O+, O-, B+, B-"),
+                new DonationChartModel("B-", "AB+, AB-, B+, B-", "O-, B-"),
+                new DonationChartModel("AB+", "AB+", "All Blood Group"),
+                new DonationChartModel("AB-", "AB+, AB-", "All Positive"),
+                new DonationChartModel("O+", "All Positive", "O+, O-"),
+                new DonationChartModel("O-", "All Blood Group", "O-")
+        ));
 
-        donationChartModelList.add(new DonationChartModel("A+", "A+, A-", "A-"));
-        donationChartModelList.add(new DonationChartModel("A-", "A-", "A+, A-"));
-        donationChartModelList.add(new DonationChartModel("B+", "B+, B-", "B-"));
-        donationChartModelList.add(new DonationChartModel("B-", "B-", "B+, B-"));
-        donationChartModelList.add(new DonationChartModel("AB+", "AB+, AB-", "AB-"));
-        donationChartModelList.add(new DonationChartModel("AB-", "AB-", "AB+, AB-"));
-        donationChartModelList.add(new DonationChartModel("O+", "All Positive", "O+"));
-        donationChartModelList.add(new DonationChartModel("O-", "O-", "O-"));
+        /*donationChartModelList.add(new DonationChartModel("A+", "AB+, A+", "O+, O-, A+, A-"));
+        donationChartModelList.add(new DonationChartModel("A-", "AB+, AB-, A+, A-", "O-, A-"));
+        donationChartModelList.add(new DonationChartModel("B+", "AB+, B+", "O+, O-, B+, B-"));
+        donationChartModelList.add(new DonationChartModel("B-", "AB+, AB-, B+, B-", "O-, B-"));
+        donationChartModelList.add(new DonationChartModel("AB+", "AB+", "All Blood Group"));
+        donationChartModelList.add(new DonationChartModel("AB-", "AB+, AB-", "All Positive"));
+        donationChartModelList.add(new DonationChartModel("O+", "All Positive", "O+, O-"));
+        donationChartModelList.add(new DonationChartModel("O-", "All Blood Group", "O-"));*/
     }
 
     private void setRecyclerView() {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -186,7 +187,6 @@ public class UserInfoActivity extends AppCompatActivity {
                 R.array.array_blood_groups, android.R.layout.simple_spinner_item);
         bloodGroupsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bloodGroupsSpinner.setAdapter(bloodGroupsAdapter);
-
 
         ArrayAdapter<CharSequence> locationsAdapter = ArrayAdapter.createFromResource(UserInfoActivity.this,
                 R.array.array_locations, android.R.layout.simple_spinner_item);
